@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="de689108740049bbb406e89fe9e5fa46" Name="Diagram1">
+        <EntityTypeShape EntityType="smart_homeModel.Automation_Rules" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.Device_Settings" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.Devices" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.Events" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.Rooms" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.Sensor_Data" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.TypeAction" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.User_Preferences" Width="1.5" PointX="9.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="smart_homeModel.Users" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="smart_homeModel.FK__Automatio__actio__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.FK__Automatio__trigg__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.FK__Device_Se__devic__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.FK__Devices__room_id__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.FK__Events__event_ty__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.FK__Sensor_Da__senso__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.FK__User_Pref__user___59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.Device_Data" ManuallyRouted="false" />
+        <AssociationConnector Association="smart_homeModel.UsersToDevices" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
