@@ -19,7 +19,7 @@
 
             <Grid>
                 <Button DockPanel.Dock="Left" Content="Сохранить" Width="100" HorizontalAlignment="Left" Margin="0,20,0,0" Click="Create_Click"/>
-                <Button DockPanel.Dock="Right" Name="Cancel" Content="Отмена" Width="100" HorizontalAlignment="Right" Margin="0,20,0,0" Click="Cancel_Click" Background="Red"/>
+                <Button DockPanel.Dock="Right" Name="Cancel" Content="Отмена" Width="100" HorizontalAlignment="Right" Margin="0,20,0,0" Click="Cancel_Click" Style="{StaticResource RedButtonStyle}"/>
             </Grid>
         </StackPanel>
     </Grid>
