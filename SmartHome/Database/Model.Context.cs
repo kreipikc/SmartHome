@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHome
+namespace SmartHome.Database
 {
     using System;
     using System.Data.Entity;

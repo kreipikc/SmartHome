@@ -9,6 +9,22 @@
       Title="HomePage">
 
     <Grid>
-        <TextBlock x:Name="HelloTextBlock" Text="Добро пожаловать!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
+            <Button Content="Девайсы" Click="NavigateToDevices"/>
+        </StackPanel>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>
+
+        <StatusBar Grid.Row="2" Background="#FF252526">
+            <StatusBarItem>
+                <TextBlock Foreground="White" Text="{Binding CurrentDateTime, StringFormat='Текущая дата и время: {0:dd.MM.yyyy HH:mm}'}"/>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Page>

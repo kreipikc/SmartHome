@@ -7,27 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHome
+namespace SmartHome.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Events
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Events()
+        public Users()
         {
-            this.Automation_Rules = new HashSet<Automation_Rules>();
+            this.User_Preferences = new HashSet<User_Preferences>();
+            this.Devices = new HashSet<Devices>();
         }
     
-        public int event_id { get; set; }
-        public string event_name { get; set; }
-        public int event_type_id { get; set; }
-        public System.DateTime timestamp { get; set; }
+        public int user_id { get; set; }
+        public string username { get; set; }
+        public string password { get; set; }
+        public string email { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Automation_Rules> Automation_Rules { get; set; }
-        public virtual TypeAction TypeAction { get; set; }
+        public virtual ICollection<User_Preferences> User_Preferences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Devices> Devices { get; set; }
     }
 }

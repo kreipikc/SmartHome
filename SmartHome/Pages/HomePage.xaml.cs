@@ -23,7 +23,12 @@ namespace SmartHome.Pages
         public HomePage()
         {
             InitializeComponent();
-            HelloTextBlock.Text = $"Добро пожаловать {MainWindow.userNow.username}!";
+            Loaded += (s, e) => NavigateToDevices(null, null);
+        }
+
+        private void NavigateToDevices(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Devices.DevicesPage());
         }
     }
 }

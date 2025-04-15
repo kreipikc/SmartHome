@@ -7,29 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHome
+namespace SmartHome.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class Devices
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Users()
+        public Devices()
         {
-            this.User_Preferences = new HashSet<User_Preferences>();
-            this.Devices = new HashSet<Devices>();
+            this.Automation_Rules = new HashSet<Automation_Rules>();
+            this.Device_Settings = new HashSet<Device_Settings>();
+            this.Sensor_Data = new HashSet<Sensor_Data>();
+            this.Users = new HashSet<Users>();
         }
     
-        public int user_id { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
-        public string email { get; set; }
+        public int device_id { get; set; }
+        public string device_name { get; set; }
+        public bool status { get; set; }
+        public Nullable<int> room_id { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User_Preferences> User_Preferences { get; set; }
+        public virtual ICollection<Automation_Rules> Automation_Rules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Devices> Devices { get; set; }
+        public virtual ICollection<Device_Settings> Device_Settings { get; set; }
+        public virtual Rooms Rooms { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sensor_Data> Sensor_Data { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

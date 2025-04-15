@@ -7,19 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHome
+namespace SmartHome.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class User_Preferences
+    public partial class Automation_Rules
     {
-        public int preference_id { get; set; }
-        public int user_id { get; set; }
-        public string preference_name { get; set; }
-        public string preference_value { get; set; }
+        public int rule_id { get; set; }
+        public string rule_name { get; set; }
+        public int trigger_event_id { get; set; }
+        public int action_device_id { get; set; }
+        public string action { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
     
-        public virtual Users Users { get; set; }
+        public virtual Devices Devices { get; set; }
+        public virtual Events Events { get; set; }
     }
 }

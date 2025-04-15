@@ -7,21 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHome
+namespace SmartHome.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Automation_Rules
+    public partial class sysdiagrams
     {
-        public int rule_id { get; set; }
-        public string rule_name { get; set; }
-        public int trigger_event_id { get; set; }
-        public int action_device_id { get; set; }
-        public string action { get; set; }
-        public Nullable<System.DateTime> created_at { get; set; }
-    
-        public virtual Devices Devices { get; set; }
-        public virtual Events Events { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

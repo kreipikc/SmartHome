@@ -7,36 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHome
+namespace SmartHome.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Devices
+    public partial class Events
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Devices()
+        public Events()
         {
             this.Automation_Rules = new HashSet<Automation_Rules>();
-            this.Device_Settings = new HashSet<Device_Settings>();
-            this.Sensor_Data = new HashSet<Sensor_Data>();
-            this.Users = new HashSet<Users>();
         }
     
-        public int device_id { get; set; }
-        public string device_name { get; set; }
-        public bool status { get; set; }
-        public Nullable<int> room_id { get; set; }
+        public int event_id { get; set; }
+        public string event_name { get; set; }
+        public int event_type_id { get; set; }
+        public System.DateTime timestamp { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Automation_Rules> Automation_Rules { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Device_Settings> Device_Settings { get; set; }
-        public virtual Rooms Rooms { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sensor_Data> Sensor_Data { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual TypeAction TypeAction { get; set; }
     }
 }

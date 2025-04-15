@@ -7,25 +7,19 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SmartHome
+namespace SmartHome.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Rooms
+    public partial class User_Preferences
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Rooms()
-        {
-            this.Devices = new HashSet<Devices>();
-        }
-    
-        public int room_id { get; set; }
-        public string room_name { get; set; }
-        public int floor { get; set; }
+        public int preference_id { get; set; }
+        public int user_id { get; set; }
+        public string preference_name { get; set; }
+        public string preference_value { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Devices> Devices { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

@@ -8,15 +8,15 @@ namespace SmartHome
 {
     class Core
     {
-        private static smart_homeEntities _smart_homeEntities;
+        private static Database.smart_homeEntities _smart_homeEntities;
 
-        public static smart_homeEntities DB = GetContext();
+        public static Database.smart_homeEntities DB = GetContext();
 
-        public static smart_homeEntities GetContext()
+        public static Database.smart_homeEntities GetContext()
         {
             if (_smart_homeEntities == null)
             {
-                _smart_homeEntities = new smart_homeEntities();
+                _smart_homeEntities = new Database.smart_homeEntities();
             }
             return _smart_homeEntities;
         }
