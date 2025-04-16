@@ -85,4 +85,82 @@
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
     </Style>
+
+    <Style TargetType="ListView">
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="BorderBrush" Value="LightGray"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FF2196F3"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE0F7FA"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="DataGrid">
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="RowBackground" Value="White"/>
+        <Setter Property="AlternatingRowBackground" Value="#FFF9F9F9"/>
+        <Setter Property="GridLinesVisibility" Value="Vertical"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="LightGray"/>
+        <Setter Property="VerticalGridLinesBrush" Value="LightGray"/>
+        <Setter Property="RowHeaderWidth" Value="0"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="CanUserSortColumns" Value="True"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="SelectionUnit" Value="FullRow"/>
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF2196F3"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="#FF2196F3"/>
+                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RowStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Padding" Value="5"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FF2196F3"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FFE0F7FA"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

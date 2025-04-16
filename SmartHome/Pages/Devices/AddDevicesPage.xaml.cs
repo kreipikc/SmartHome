@@ -55,7 +55,7 @@ namespace SmartHome.Pages.Devices
                 var newUser = new Database.Devices
                 {
                     device_name = Name,
-                    status = (bool)Status,
+                    status = Status,
                     room_id = RoomsId,
                     created_at = DateTime.Now
                 };
@@ -64,7 +64,7 @@ namespace SmartHome.Pages.Devices
                 Core.DB.SaveChanges();
 
                 MessageBox.Show("Девайс успешно создан");
-                NavigationService.Navigate(new Uri("Pages\\Devices\\DevicesPage.xaml", UriKind.Relative));
+                NavigationService.GoBack();
                 return true;
             }
             catch (Exception ex)
@@ -76,7 +76,7 @@ namespace SmartHome.Pages.Devices
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("Pages\\Devices\\DevicesPage.xaml", UriKind.Relative));
+            NavigationService.GoBack();
         }
     }
 }

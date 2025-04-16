@@ -36,7 +36,7 @@ namespace SmartHome.Pages.Devices
 
         private void AddDevices_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("Pages\\Devices\\AddDevicesPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new AddDevicesPage());
         }
 
         private void EditDevices_Click(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace SmartHome.Pages.Devices
             DevicesCurrent = DataGridDevices.SelectedItem as Database.Devices;
             if (DevicesCurrent != null)
             {
-                NavigationService.Navigate(new Uri("Pages\\Devices\\EditDevicesPage.xaml", UriKind.Relative));
+                NavigationService.Navigate(new EditDevicesPage());
             }
             else
             {

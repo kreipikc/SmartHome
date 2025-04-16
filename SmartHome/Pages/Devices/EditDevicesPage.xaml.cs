@@ -95,7 +95,7 @@ namespace SmartHome.Pages.Devices
                 Core.DB.SaveChanges();
                 MessageBox.Show("Девайс успешно обновлен");
 
-                NavigationService.Navigate(new Uri("Pages\\Devices\\DevicesPage.xaml", UriKind.Relative));
+                NavigationService.GoBack();
                 return true;
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace SmartHome.Pages.Devices
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("Pages\\Devices\\DevicesPage.xaml", UriKind.Relative));
+            NavigationService.GoBack();
         }
     }
 }
