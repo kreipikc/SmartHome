@@ -20,6 +20,7 @@
             <Button Content="Редактировать" Width="100" Margin="5" Click="EditDevices_Click" />
             <Button Content="Удалить" Width="100" Margin="5" Click="DeleteDevices_Click" Style="{StaticResource RedButtonStyle}" />
             <Button Content="Обновить" Width="100" Margin="5" Click="RefreshDevices_Click" />
+            <Button Content="Настройки" Width="100" Margin="5" Click="OpenSetings_Click" />
         </StackPanel>
 
         <!-- Таблица пользователей -->

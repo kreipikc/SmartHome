@@ -78,5 +78,18 @@ namespace SmartHome.Pages.Devices
         {
             UpdateData();
         }
+
+        private void OpenSetings_Click(object sender, RoutedEventArgs e)
+        {
+            DevicesCurrent = DataGridDevices.SelectedItem as Database.Devices;
+            if (DevicesCurrent != null)
+            {
+                NavigationService.Navigate(new Settings.DevicesSettingsPage());
+            }
+            else
+            {
+                MessageBox.Show("Выберите поле с записью");
+            }
+        }
     }
 }

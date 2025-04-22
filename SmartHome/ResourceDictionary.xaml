@@ -107,8 +107,43 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#FFE0F7FA"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="#FF1976D2"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </MultiTrigger>
                     </Style.Triggers>
                 </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="View">
+            <Setter.Value>
+                <GridView>
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="GridViewColumnHeader">
+                            <Setter Property="Background" Value="#FF2196F3"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="#FF2196F3"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="Padding" Value="5"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridView.ColumnHeaderTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Border Background="{Binding Background, RelativeSource={RelativeSource AncestorType=GridViewColumnHeader}}"
+                                    BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType=GridViewColumnHeader}}"
+                                    BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType=GridViewColumnHeader}}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </GridView.ColumnHeaderTemplate>
+                </GridView>
             </Setter.Value>
         </Setter>
     </Style>
@@ -158,9 +193,44 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#FFE0F7FA"/>
                         </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="#FF0D47A1"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CellStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Padding" Value="5"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Transparent"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="Transparent"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </MultiTrigger>
                     </Style.Triggers>
                 </Style>
             </Setter.Value>
         </Setter>
     </Style>
+
 </ResourceDictionary>

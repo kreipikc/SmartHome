@@ -101,6 +101,15 @@
     <Compile Include="Pages\Devices\EditDevicesPage.xaml.cs">
       <DependentUpon>EditDevicesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Devices\Settings\AddDevicesSettingsPage.xaml.cs">
+      <DependentUpon>AddDevicesSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Devices\Settings\DevicesSettingsPage.xaml.cs">
+      <DependentUpon>DevicesSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Devices\Settings\EditDevicesSettingsPage.xaml.cs">
+      <DependentUpon>EditDevicesSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Devices\Utils.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -148,6 +157,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Devices\EditDevicesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Devices\Settings\AddDevicesSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Devices\Settings\DevicesSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Devices\Settings\EditDevicesSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -213,6 +234,8 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Pages\Users\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

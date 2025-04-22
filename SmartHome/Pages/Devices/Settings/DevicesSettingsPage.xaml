@@ -1,0 +1,38 @@
+﻿<Page x:Class="SmartHome.Pages.Devices.Settings.DevicesSettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SmartHome.Pages.Devices.Settings"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DevicesSettingsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Name="DevicesCurrent" Text="Название девайса" FontSize="16" Margin="5"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+            <Button Content="Добавить" Width="100" Margin="5" Click="AddDevicesSettings_Click" />
+            <Button Content="Редактировать" Width="100" Margin="5" Click="EditDevicesSettings_Click" />
+            <Button Content="Удалить" Width="100" Margin="5" Click="DeleteDevicesSettings_Click" Style="{StaticResource RedButtonStyle}" />
+            <Button Content="Обновить" Width="100" Margin="5" Click="RefreshDevicesSettings_Click" />
+        </StackPanel>
+
+        <ListView Grid.Row="2" Name="ListViewDevicesSettings">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID настройки" DisplayMemberBinding="{Binding setting_id}" Width="100"/>
+                    <GridViewColumn Header="Настройка" DisplayMemberBinding="{Binding setting_name}" Width="150"/>
+                    <GridViewColumn Header="Значение" DisplayMemberBinding="{Binding setting_value}" Width="150"/>
+                    <GridViewColumn Header="Дата создания" DisplayMemberBinding="{Binding created_at, StringFormat={}{0:dd.MM.yyyy HH:mm}}" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
