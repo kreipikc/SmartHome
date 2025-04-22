@@ -22,17 +22,56 @@ namespace SmartHome.Pages.Users.Preferences
     public partial class UserPreferencesPage : Page
     {
         public static Database.User_Preferences UserPreferencesCurrent;
+        private List<Database.User_Preferences> allUsersPreferences;
 
         public UserPreferencesPage()
         {
             InitializeComponent();
             UsersCurrentText.Text = UsersPage.UserCurrent.username;
             UpdateData();
+            SortUsersPreferencesCategory.ItemsSource = new List<Category>
+            {
+                new Category { NameOfCategory = "По ID" },
+                new Category { NameOfCategory = "По названию" },
+                new Category { NameOfCategory = "По значению" },
+                new Category { NameOfCategory = "По дате создания" }
+            };
         }
 
         private void UpdateData()
         {
-            ListViewUsersPreferences.ItemsSource = Core.DB.User_Preferences.Where(p => p.user_id == UsersPage.UserCurrent.user_id).ToList();
+            allUsersPreferences = Core.DB.User_Preferences.Where(p => p.user_id == UsersPage.UserCurrent.user_id).ToList();
+            FilterAndSortUsersPreferences();
+        }
+
+        private void FilterAndSortUsersPreferences()
+        {
+            var filteredDevices = allUsersPreferences.AsQueryable();
+
+            // Фильтрация по названию
+            if (!string.IsNullOrEmpty(SearchUsersPreferencesName.Text))
+            {
+                filteredDevices = filteredDevices.Where(d => d.preference_name.IndexOf(SearchUsersPreferencesName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            // Сортировка
+            switch (SortUsersPreferencesCategory.SelectedIndex)
+            {
+                case 0: // По ID
+                    filteredDevices = filteredDevices.OrderBy(d => d.user_id);
+                    break;
+                case 1: // По названию
+                    filteredDevices = filteredDevices.OrderBy(d => d.preference_name);
+                    break;
+                case 2: // По значению
+                    filteredDevices = filteredDevices.OrderBy(d => d.preference_value);
+                    break;
+                case 3: // По дате создания
+                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    break;
+            }
+
+            ListViewUsersPreferences.ItemsSource = filteredDevices.ToList();
         }
 
         private void AddUsersPreferences_Click(object sender, RoutedEventArgs e)
@@ -78,6 +117,23 @@ namespace SmartHome.Pages.Users.Preferences
         private void RefreshUsersPreferences_Click(object sender, RoutedEventArgs e)
         {
             UpdateData();
+        }
+
+        private void SearchUsersPreferencesName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FilterAndSortUsersPreferences();
+        }
+
+        private void SortUsersPreferencesCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FilterAndSortUsersPreferences();
+        }
+
+        private void CleanFilter_OnClick(object sender, RoutedEventArgs e)
+        {
+            SearchUsersPreferencesName.Text = string.Empty;
+            SortUsersPreferencesCategory.SelectedIndex = 0;
+            FilterAndSortUsersPreferences();
         }
     }
 }

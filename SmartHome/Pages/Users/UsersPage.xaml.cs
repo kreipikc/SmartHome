@@ -24,16 +24,55 @@ namespace SmartHome.Pages.Users
     public partial class UsersPage : Page
     {
         public static Database.Users UserCurrent;
+        private List<Database.Users> allUsers;
 
         public UsersPage()
         {
             InitializeComponent();
             UpdateData();
+            SortUsersCategory.ItemsSource = new List<Category>
+            {
+                new Category { NameOfCategory = "По ID" },
+                new Category { NameOfCategory = "По имени" },
+                new Category { NameOfCategory = "По почте" },
+                new Category { NameOfCategory = "По дате создания" }
+            };
         }
 
         private void UpdateData()
         {
-            DataGridUsers.ItemsSource = Core.DB.Users.ToList();
+            allUsers = Core.DB.Users.ToList();
+            FilterAndSortUsers();
+        }
+
+        private void FilterAndSortUsers()
+        {
+            var filteredDevices = allUsers.AsQueryable();
+
+            // Фильтрация по названию
+            if (!string.IsNullOrEmpty(SearchUsersName.Text))
+            {
+                filteredDevices = filteredDevices.Where(d => d.username.IndexOf(SearchUsersName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            // Сортировка
+            switch (SortUsersCategory.SelectedIndex)
+            {
+                case 0: // По ID
+                    filteredDevices = filteredDevices.OrderBy(d => d.user_id);
+                    break;
+                case 1: // По названию
+                    filteredDevices = filteredDevices.OrderBy(d => d.username);
+                    break;
+                case 2: // По почте
+                    filteredDevices = filteredDevices.OrderBy(d => d.email);
+                    break;
+                case 3: // По дате создания
+                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    break;
+            }
+
+            DataGridUsers.ItemsSource = filteredDevices.ToList();
         }
 
         private void AddUsers_Click(object sender, RoutedEventArgs e)
@@ -92,6 +131,23 @@ namespace SmartHome.Pages.Users
             {
                 MessageBox.Show("Выберите поле с записью");
             }
+        }
+
+        private void SearchUsersName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FilterAndSortUsers();
+        }
+
+        private void SortUsersCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FilterAndSortUsers();
+        }
+
+        private void CleanFilter_OnClick(object sender, RoutedEventArgs e)
+        {
+            SearchUsersName.Text = string.Empty;
+            SortUsersCategory.SelectedIndex = 0;
+            FilterAndSortUsers();
         }
     }
 }

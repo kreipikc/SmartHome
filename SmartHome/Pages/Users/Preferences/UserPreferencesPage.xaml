@@ -12,19 +12,38 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Name="UsersCurrentText" Text="Пользователь" FontSize="16" Margin="5"/>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
+            <TextBlock Text="Введите название" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
+            <TextBox x:Name="SearchUsersPreferencesName" HorizontalAlignment="Right"
+             TextChanged="SearchUsersPreferencesName_TextChanged" Width="135" Margin="5"/>
+
+            <TextBlock Text="Сортировать" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
+            <ComboBox x:Name="SortUsersPreferencesCategory" HorizontalAlignment="Right"
+              DisplayMemberPath="NameOfCategory" SelectedIndex="0" SelectionChanged="SortUsersPreferencesCategory_SelectionChanged" Width="265" Margin="5">
+                <ComboBox.ItemsSource>
+                    <CompositeCollection>
+                        <CollectionContainer Collection="{Binding UsersPreferencesCategories}"/>
+                    </CompositeCollection>
+                </ComboBox.ItemsSource>
+            </ComboBox>
+
+            <Button x:Name="CleanFilter" Content="Очистить фильтр" FontSize="10" Click="CleanFilter_OnClick" Margin="5"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
             <Button Content="Добавить" Width="100" Margin="5" Click="AddUsersPreferences_Click" />
             <Button Content="Редактировать" Width="100" Margin="5" Click="EditUsersPreferences_Click" />
             <Button Content="Удалить" Width="100" Margin="5" Click="DeleteUsersPreferences_Click" Style="{StaticResource RedButtonStyle}" />
             <Button Content="Обновить" Width="100" Margin="5" Click="RefreshUsersPreferences_Click" />
         </StackPanel>
 
-        <ListView Grid.Row="2" Name="ListViewUsersPreferences">
+        <ListView Grid.Row="3" Name="ListViewUsersPreferences">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID настройки" DisplayMemberBinding="{Binding preference_id}" Width="100"/>

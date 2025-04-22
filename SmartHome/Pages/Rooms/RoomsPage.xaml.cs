@@ -24,16 +24,51 @@ namespace SmartHome.Pages.Rooms
     public partial class RoomsPage : Page
     {
         public static Database.Rooms RoomCurrent;
+        private List<Database.Rooms> allRooms;
 
         public RoomsPage()
         {
             InitializeComponent();
             UpdateData();
+            SortRoomsCategory.ItemsSource = new List<Category>
+            {
+                new Category { NameOfCategory = "По названию" },
+                new Category { NameOfCategory = "По этажу" },
+                new Category { NameOfCategory = "По дате создания" }
+            };
         }
 
         private void UpdateData()
         {
-            DataGridRooms.ItemsSource = Core.DB.Rooms.ToList();
+            allRooms = Core.DB.Rooms.ToList();
+            FilterAndSortRooms();
+        }
+
+        private void FilterAndSortRooms()
+        {
+            var filteredDevices = allRooms.AsQueryable();
+
+            // Фильтрация по названию
+            if (!string.IsNullOrEmpty(SearchRoomsName.Text))
+            {
+                filteredDevices = filteredDevices.Where(d => d.room_name.IndexOf(SearchRoomsName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            // Сортировка
+            switch (SortRoomsCategory.SelectedIndex)
+            {
+                case 0: // По названию
+                    filteredDevices = filteredDevices.OrderBy(d => d.room_name);
+                    break;
+                case 1: // По этажу
+                    filteredDevices = filteredDevices.OrderBy(d => d.floor);
+                    break;
+                case 2: // По дате создания
+                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    break;
+            }
+
+            DataGridRooms.ItemsSource = filteredDevices.ToList();
         }
 
         private void AddRooms_Click(object sender, RoutedEventArgs e)
@@ -79,6 +114,23 @@ namespace SmartHome.Pages.Rooms
         private void RefreshRooms_Click(object sender, RoutedEventArgs e)
         {
             UpdateData();
+        }
+
+        private void SearchRoomsName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FilterAndSortRooms();
+        }
+
+        private void SortRoomsCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FilterAndSortRooms();
+        }
+
+        private void CleanFilter_OnClick(object sender, RoutedEventArgs e)
+        {
+            SearchRoomsName.Text = string.Empty;
+            SortRoomsCategory.SelectedIndex = 0;
+            FilterAndSortRooms();
         }
     }
 }

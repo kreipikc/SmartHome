@@ -22,17 +22,53 @@ namespace SmartHome.Pages.Devices.Settings
     public partial class DevicesSettingsPage : Page
     {
         public static Database.Device_Settings Device_SettingsCurrent;
+        private List<Database.Device_Settings> allDevicesSettings;
 
         public DevicesSettingsPage()
         {
             InitializeComponent();
             DevicesCurrent.Text = DevicesPage.DevicesCurrent.device_name;
             UpdateData();
+
+            SortDevicesSettingsCategory.ItemsSource = new List<Category>
+            {
+                new Category { NameOfCategory = "По названию" },
+                new Category { NameOfCategory = "По значению" },
+                new Category { NameOfCategory = "По дате создания" }
+            };
         }
 
         private void UpdateData()
         {
-            ListViewDevicesSettings.ItemsSource = Core.DB.Device_Settings.Where(p => p.device_id == DevicesPage.DevicesCurrent.device_id).ToList();
+            allDevicesSettings = Core.DB.Device_Settings.Where(p => p.device_id == DevicesPage.DevicesCurrent.device_id).ToList();
+            FilterAndSortDevicesSettings();
+        }
+
+        private void FilterAndSortDevicesSettings()
+        {
+            var filteredDevicesSettings = allDevicesSettings.AsQueryable();
+
+            // Фильтрация по названию
+            if (!string.IsNullOrEmpty(SearchDevicesSettingsName.Text))
+            {
+                filteredDevicesSettings = filteredDevicesSettings.Where(d => d.setting_name.IndexOf(SearchDevicesSettingsName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            // Сортировка
+            switch (SortDevicesSettingsCategory.SelectedIndex)
+            {
+                case 0: // По названию
+                    filteredDevicesSettings = filteredDevicesSettings.OrderBy(d => d.setting_name);
+                    break;
+                case 1: // По значению
+                    filteredDevicesSettings = filteredDevicesSettings.OrderBy(d => d.setting_value);
+                    break;
+                case 2: // По дате создания
+                    filteredDevicesSettings = filteredDevicesSettings.OrderBy(d => d.created_at);
+                    break;
+            }
+
+            ListViewDevicesSettings.ItemsSource = filteredDevicesSettings.ToList();
         }
 
         private void AddDevicesSettings_Click(object sender, RoutedEventArgs e)
@@ -78,6 +114,23 @@ namespace SmartHome.Pages.Devices.Settings
         private void RefreshDevicesSettings_Click(object sender, RoutedEventArgs e)
         {
             UpdateData();
+        }
+
+        private void SearchDevicesSettingsName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FilterAndSortDevicesSettings();
+        }
+
+        private void SortDevicesSettingsCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FilterAndSortDevicesSettings();
+        }
+
+        private void CleanFilter_OnClick(object sender, RoutedEventArgs e)
+        {
+            SearchDevicesSettingsName.Text = string.Empty;
+            SortDevicesSettingsCategory.SelectedIndex = 0;
+            FilterAndSortDevicesSettings();
         }
     }
 }

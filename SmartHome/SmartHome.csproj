@@ -92,6 +92,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Category.cs" />
     <Compile Include="Pages\Devices\AddDevicesPage.xaml.cs">
       <DependentUpon>AddDevicesPage.xaml</DependentUpon>
     </Compile>
