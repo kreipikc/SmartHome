@@ -144,6 +144,24 @@
     <Compile Include="Pages\Rooms\RoomsPage.xaml.cs">
       <DependentUpon>RoomsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Users\AddUsersPage.xaml.cs">
+      <DependentUpon>AddUsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\EditUsersPage.xaml.cs">
+      <DependentUpon>EditUsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\Preferences\AddUsersPreferencesPage.xaml.cs">
+      <DependentUpon>AddUsersPreferencesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\Preferences\EditUsersPreferencesPage.xaml.cs">
+      <DependentUpon>EditUsersPreferencesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\Preferences\UserPreferencesPage.xaml.cs">
+      <DependentUpon>UserPreferencesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Users\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +216,30 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Rooms\RoomsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Users\AddUsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Users\EditUsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Users\Preferences\AddUsersPreferencesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Users\Preferences\EditUsersPreferencesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Users\Preferences\UserPreferencesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Users\UsersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

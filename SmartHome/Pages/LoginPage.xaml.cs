@@ -22,6 +22,8 @@ namespace SmartHome.Pages
     /// </summary>
     public partial class LoginPage : Page
     {
+        public static Database.Users UserNow;
+
         public LoginPage()
         {
             InitializeComponent();
@@ -44,8 +46,8 @@ namespace SmartHome.Pages
             {
                 loginMessage.Text = "Авторизация успешна";
                 loginMessage.Foreground = new SolidColorBrush(Colors.Green);
-                MainWindow.userNow = user;
-                NavigationService.Navigate(new Uri("Pages\\HomePage.xaml", UriKind.Relative));
+                UserNow = user;
+                NavigationService.Navigate(new HomePage());
             }
             else
             {
@@ -86,7 +88,7 @@ namespace SmartHome.Pages
                 return;
             }
 
-            var newUser = new Users
+            var newUser = new Database.Users
             {
                 username = login,
                 password = Utils.GetHash(password),

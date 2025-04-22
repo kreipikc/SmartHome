@@ -21,12 +21,10 @@ namespace SmartHome
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Users userNow;
-
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new Uri("Pages\\LoginPage.xaml", UriKind.Relative));
+            MainFrame.NavigationService.Navigate(new Pages.LoginPage());
         }
     }
 }
