@@ -30,5 +30,10 @@ namespace SmartHome.Pages
         {
             MainFrame.Navigate(new Devices.DevicesPage());
         }
+
+        private void NavigateToRooms(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Rooms.RoomsPage());
+        }
     }
 }

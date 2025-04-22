@@ -39,7 +39,7 @@ namespace SmartHome.Pages.Devices
 
                 var currentRoomId = DevicesPage.DevicesCurrent.room_id;
                 var selectedRole = RoomsComboBox.Items
-                    .OfType<Rooms>()
+                    .OfType<Database.Rooms>()
                     .FirstOrDefault(r => r.room_id == currentRoomId);
 
                 if (selectedRole != null)
