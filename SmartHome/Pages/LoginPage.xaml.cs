@@ -82,6 +82,12 @@ namespace SmartHome.Pages
                 return;
             }
 
+            if (!SmartHome.Utils.IsValidEmail(email))
+            {
+                registerMessage.Text = "Почта не соответствует стандартам";
+                return;
+            }
+
             if (Core.DB.Users.Any(u => u.email == email))
             {
                 registerMessage.Text = "Пользователь с таким почтой уже существует";

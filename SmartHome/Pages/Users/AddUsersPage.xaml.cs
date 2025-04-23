@@ -47,6 +47,12 @@ namespace SmartHome.Pages.Users
                     return false;
                 }
 
+                if (!SmartHome.Utils.IsValidEmail(Email))
+                {
+                    MessageBox.Show("Почта не соответствует стандартам");
+                    return false;
+                }
+
                 if (Pass1 != Pass2)
                 {
                     MessageBox.Show("Пароли не совпдают, проверьте написание и попробуйте снова");

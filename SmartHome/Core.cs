@@ -20,6 +20,5 @@ namespace SmartHome
             }
             return _smart_homeEntities;
         }
-
     }
 }
