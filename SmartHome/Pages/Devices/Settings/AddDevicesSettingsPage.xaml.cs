@@ -66,7 +66,7 @@ namespace SmartHome.Pages.Devices.Settings
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}");
+                SmartHome.Utils.PrintError(ex);
                 return false;
             }
         }

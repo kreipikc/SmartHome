@@ -37,7 +37,7 @@ namespace SmartHome.Pages.Users.Preferences
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}");
+                SmartHome.Utils.PrintError(ex);
             }
         }
 
@@ -85,7 +85,7 @@ namespace SmartHome.Pages.Users.Preferences
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}");
+                SmartHome.Utils.PrintError(ex);
                 return false;
             }
         }

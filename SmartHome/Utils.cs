@@ -5,9 +5,13 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SmartHome
 {
+    /// <summary>
+    /// Класс с общими утилитами
+    /// </summary>
     class Utils
     {
         public static string GetHash(string password)
@@ -27,6 +31,16 @@ namespace SmartHome
             Regex regex = new Regex(emailPattern, RegexOptions.IgnoreCase);
 
             return regex.IsMatch(email);
+        }
+
+        public static void PrintError(Exception ex)
+        {
+            MessageBox.Show(
+                $"Message: {ex.Message}",
+                "Error",
+                MessageBoxButton.OK,
+                MessageBoxImage.Error
+            );
         }
     }
 }

@@ -31,83 +31,97 @@ namespace SmartHome.Pages
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            string email = emailTextBox.Text;
-            string password = passwordBox.Password;
+            try
+            {
+                string email = emailTextBox.Text;
+                string password = passwordBox.Password;
 
-            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-            {
-                loginMessage.Text = "Пожалуйста, заполните все поля";
-                return;
-            }
+                if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+                {
+                    loginMessage.Text = "Пожалуйста, заполните все поля";
+                    return;
+                }
 
-            string hashPass = Utils.GetHash(password);
-            var user = Core.DB.Users.FirstOrDefault(u => u.email == email && u.password == hashPass);
-            if (user != null)
-            {
-                loginMessage.Text = "Авторизация успешна";
-                loginMessage.Foreground = new SolidColorBrush(Colors.Green);
-                UserNow = user;
-                NavigationService.Navigate(new HomePage());
+                string hashPass = Utils.GetHash(password);
+                var user = Core.DB.Users.FirstOrDefault(u => u.email == email && u.password == hashPass);
+                if (user != null)
+                {
+                    loginMessage.Text = "Авторизация успешна";
+                    loginMessage.Foreground = new SolidColorBrush(Colors.Green);
+                    UserNow = user;
+                    NavigationService.Navigate(new HomePage());
+                }
+                else
+                {
+                    loginMessage.Text = "Неверный логин или пароль";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                loginMessage.Text = "Неверный логин или пароль";
+                Utils.PrintError(ex);
             }
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            string login = regLoginTextBox.Text;
-            string email = regEmailTextBox.Text;
-            string password = regPasswordBox.Password;
-            string confirmPassword = confirmPasswordBox.Password;
-
-            if (string.IsNullOrEmpty(login) ||
-                string.IsNullOrEmpty(email) ||
-                string.IsNullOrEmpty(password))
+            try
             {
-                registerMessage.Text = "Пожалуйста, заполните все поля";
-                return;
+                string login = regLoginTextBox.Text;
+                string email = regEmailTextBox.Text;
+                string password = regPasswordBox.Password;
+                string confirmPassword = confirmPasswordBox.Password;
+
+                if (string.IsNullOrEmpty(login) ||
+                    string.IsNullOrEmpty(email) ||
+                    string.IsNullOrEmpty(password))
+                {
+                    registerMessage.Text = "Пожалуйста, заполните все поля";
+                    return;
+                }
+
+                if (password.Length < 6)
+                {
+                    registerMessage.Text = "Пароль слишком простой (меньше 6 символов)";
+                    return;
+                }
+
+                if (password != confirmPassword)
+                {
+                    registerMessage.Text = "Пароли не совпадают";
+                    return;
+                }
+
+                if (!SmartHome.Utils.IsValidEmail(email))
+                {
+                    registerMessage.Text = "Почта не соответствует стандартам";
+                    return;
+                }
+
+                if (Core.DB.Users.Any(u => u.email == email))
+                {
+                    registerMessage.Text = "Пользователь с таким почтой уже существует";
+                    return;
+                }
+
+                var newUser = new Database.Users
+                {
+                    username = login,
+                    password = Utils.GetHash(password),
+                    email = email,
+                    created_at = DateTime.Now
+                };
+
+                Core.DB.Users.Add(newUser);
+                Core.DB.SaveChanges();
+
+                registerMessage.Text = "Регистрация успешна";
+                registerMessage.Foreground = new SolidColorBrush(Colors.Green);
+                AuthAndRegisrt.SelectedIndex = 0;
             }
-
-            if (password.Length < 6)
+            catch (Exception ex)
             {
-                registerMessage.Text = "Пароль слишком простой (меньше 6 символов)";
-                return;
+                Utils.PrintError(ex);
             }
-
-            if (password != confirmPassword)
-            {
-                registerMessage.Text = "Пароли не совпадают";
-                return;
-            }
-
-            if (!SmartHome.Utils.IsValidEmail(email))
-            {
-                registerMessage.Text = "Почта не соответствует стандартам";
-                return;
-            }
-
-            if (Core.DB.Users.Any(u => u.email == email))
-            {
-                registerMessage.Text = "Пользователь с таким почтой уже существует";
-                return;
-            }
-
-            var newUser = new Database.Users
-            {
-                username = login,
-                password = Utils.GetHash(password),
-                email = email,
-                created_at = DateTime.Now
-            };
-
-            Core.DB.Users.Add(newUser);
-            Core.DB.SaveChanges();
-
-            registerMessage.Text = "Регистрация успешна";
-            registerMessage.Foreground = new SolidColorBrush(Colors.Green);
-            AuthAndRegisrt.SelectedIndex = 0;
         }
     }
 }
