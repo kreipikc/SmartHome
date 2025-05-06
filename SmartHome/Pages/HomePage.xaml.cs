@@ -40,5 +40,20 @@ namespace SmartHome.Pages
         {
             MainFrame.Navigate(new Users.UsersPage());
         }
+
+        private void NavigateToAutomationRules(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new AutomationRules.AutomationRulesPage());
+        }
+
+        private void NavigateToEvents(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Events.EventsPage());
+        }
+
+        private void NavigateToTypeAction(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new TypeAction.TypeActionPage());
+        }
     }
 }

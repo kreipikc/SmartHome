@@ -68,6 +68,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Core.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Database\Devices.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -92,7 +93,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Category.cs" />
+    <Compile Include="Pages\AutomationRules\AddAutomationRulesPage.xaml.cs">
+      <DependentUpon>AddAutomationRulesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AutomationRules\AutomationRulesPage.xaml.cs">
+      <DependentUpon>AutomationRulesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AutomationRules\EditAutomationRulesPage.xaml.cs">
+      <DependentUpon>EditAutomationRulesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AutomationRules\Utils.cs" />
     <Compile Include="Pages\Devices\AddDevicesPage.xaml.cs">
       <DependentUpon>AddDevicesPage.xaml</DependentUpon>
     </Compile>
@@ -112,29 +122,21 @@
       <DependentUpon>EditDevicesSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Devices\Utils.cs" />
+    <Compile Include="Pages\Events\AddEventsPage.xaml.cs">
+      <DependentUpon>AddEventsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\EditEventsPage.xaml.cs">
+      <DependentUpon>EditEventsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\EventsPage.xaml.cs">
+      <DependentUpon>EventsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Events\Utils.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Rooms.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Sensor_Data.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\sysdiagrams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\TypeAction.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\Users.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Database\User_Preferences.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\Rooms\AddRoomsPage.xaml.cs">
       <DependentUpon>AddRoomsPage.xaml</DependentUpon>
@@ -144,6 +146,15 @@
     </Compile>
     <Compile Include="Pages\Rooms\RoomsPage.xaml.cs">
       <DependentUpon>RoomsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TypeAction\AddTypeActionPage.xaml.cs">
+      <DependentUpon>AddTypeActionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TypeAction\EditTypeActionPage.xaml.cs">
+      <DependentUpon>EditTypeActionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TypeAction\TypeActionPage.xaml.cs">
+      <DependentUpon>TypeActionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Users\AddUsersPage.xaml.cs">
       <DependentUpon>AddUsersPage.xaml</DependentUpon>
@@ -163,6 +174,24 @@
     <Compile Include="Pages\Users\UsersPage.xaml.cs">
       <DependentUpon>UsersPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\Rooms.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Sensor_Data.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\TypeAction.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Users.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User_Preferences.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utils.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -176,6 +205,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AutomationRules\AddAutomationRulesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AutomationRules\AutomationRulesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\AutomationRules\EditAutomationRulesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Devices\AddDevicesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -200,6 +241,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Events\AddEventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\EditEventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Events\EventsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,6 +270,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Rooms\RoomsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TypeAction\AddTypeActionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TypeAction\EditTypeActionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TypeAction\TypeActionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +363,5 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

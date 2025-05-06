@@ -25,7 +25,7 @@ namespace SmartHome.Pages.Devices
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке данных: {ex.Message}");
+                SmartHome.Utils.PrintError(ex, "Ошибка при загрузке данных");
             }
         }
     }

@@ -33,10 +33,21 @@ namespace SmartHome
             return regex.IsMatch(email);
         }
 
-        public static void PrintError(Exception ex)
+        public static void PrintError(Exception ex, string Message = null)
         {
+            if (Message == null)
+            {
+                MessageBox.Show(
+                    $"Message: {ex.Message}",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                );
+                return;
+            }
+
             MessageBox.Show(
-                $"Message: {ex.Message}",
+                $"{Message}: {ex.Message}",
                 "Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error

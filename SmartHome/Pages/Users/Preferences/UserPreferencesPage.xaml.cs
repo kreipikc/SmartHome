@@ -27,7 +27,7 @@ namespace SmartHome.Pages.Users.Preferences
         public UserPreferencesPage()
         {
             InitializeComponent();
-            UsersCurrentText.Text = UsersPage.UserCurrent.username;
+            UsersCurrentText.Text = UsersPage.UserCurrent.email;
             UpdateData();
             SortUsersPreferencesCategory.ItemsSource = new List<Category>
             {
