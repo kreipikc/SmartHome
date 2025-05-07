@@ -94,23 +94,33 @@ namespace SmartHome.Pages.Devices
 
         private void DeleteDevices_Click(object sender, RoutedEventArgs e)
         {
-            Database.Devices Device = DataGridDevices.SelectedItem as Database.Devices;
-            if (Device != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.Devices Device = DataGridDevices.SelectedItem as Database.Devices;
+                if (Device != null)
                 {
-                    Core.DB.Devices.Remove(Device);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.Devices.Remove(Device);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 

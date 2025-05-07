@@ -91,23 +91,33 @@ namespace SmartHome.Pages.Rooms
 
         private void DeleteRooms_Click(object sender, RoutedEventArgs e)
         {
-            Database.Rooms Room = DataGridRooms.SelectedItem as Database.Rooms;
-            if (Room != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.Rooms Room = DataGridRooms.SelectedItem as Database.Rooms;
+                if (Room != null)
                 {
-                    Core.DB.Rooms.Remove(Room);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.Rooms.Remove(Room);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 

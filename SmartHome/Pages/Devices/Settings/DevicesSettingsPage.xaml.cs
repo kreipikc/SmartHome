@@ -91,23 +91,33 @@ namespace SmartHome.Pages.Devices.Settings
 
         private void DeleteDevicesSettings_Click(object sender, RoutedEventArgs e)
         {
-            Database.Device_Settings Settings = ListViewDevicesSettings.SelectedItem as Database.Device_Settings;
-            if (Settings != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.Device_Settings Settings = ListViewDevicesSettings.SelectedItem as Database.Device_Settings;
+                if (Settings != null)
                 {
-                    Core.DB.Device_Settings.Remove(Settings);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.Device_Settings.Remove(Settings);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 

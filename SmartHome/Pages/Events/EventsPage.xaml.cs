@@ -96,23 +96,33 @@ namespace SmartHome.Pages.Events
 
         private void DeleteEvents_Click(object sender, RoutedEventArgs e)
         {
-            Database.Events Event = DataGridEvents.SelectedItem as Database.Events;
-            if (Event != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.Events Event = DataGridEvents.SelectedItem as Database.Events;
+                if (Event != null)
                 {
-                    Core.DB.Events.Remove(Event);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.Events.Remove(Event);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 

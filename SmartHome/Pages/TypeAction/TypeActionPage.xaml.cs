@@ -83,23 +83,33 @@ namespace SmartHome.Pages.TypeAction
 
         private void DeleteTypeAction_Click(object sender, RoutedEventArgs e)
         {
-            Database.TypeAction Type = DataGridTypeAction.SelectedItem as Database.TypeAction;
-            if (Type != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.TypeAction Type = DataGridTypeAction.SelectedItem as Database.TypeAction;
+                if (Type != null)
                 {
-                    Core.DB.TypeAction.Remove(Type);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.TypeAction.Remove(Type);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 

@@ -95,23 +95,33 @@ namespace SmartHome.Pages.Users
 
         private void DeleteUsers_Click(object sender, RoutedEventArgs e)
         {
-            Database.Users us = DataGridUsers.SelectedItem as Database.Users;
-            if (us != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.Users us = DataGridUsers.SelectedItem as Database.Users;
+                if (us != null)
                 {
-                    Core.DB.Users.Remove(us);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.Users.Remove(us);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 

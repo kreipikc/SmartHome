@@ -100,23 +100,33 @@ namespace SmartHome.Pages.AutomationRules
 
         private void DeleteAutomationRules_Click(object sender, RoutedEventArgs e)
         {
-            Database.Automation_Rules AutomationRule = DataGridAutomationRules.SelectedItem as Database.Automation_Rules;
-            if (AutomationRule != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.Automation_Rules AutomationRule = DataGridAutomationRules.SelectedItem as Database.Automation_Rules;
+                if (AutomationRule != null)
                 {
-                    Core.DB.Automation_Rules.Remove(AutomationRule);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.Automation_Rules.Remove(AutomationRule);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 

@@ -94,23 +94,33 @@ namespace SmartHome.Pages.Users.Preferences
 
         private void DeleteUsersPreferences_Click(object sender, RoutedEventArgs e)
         {
-            Database.User_Preferences Preferences = ListViewUsersPreferences.SelectedItem as Database.User_Preferences;
-            if (Preferences != null)
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите удалить запись?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
             {
-                try
+                Database.User_Preferences Preferences = ListViewUsersPreferences.SelectedItem as Database.User_Preferences;
+                if (Preferences != null)
                 {
-                    Core.DB.User_Preferences.Remove(Preferences);
-                    Core.DB.SaveChanges();
-                    UpdateData();
+                    try
+                    {
+                        Core.DB.User_Preferences.Remove(Preferences);
+                        Core.DB.SaveChanges();
+                        UpdateData();
+                    }
+                    catch (Exception ex)
+                    {
+                        SmartHome.Utils.PrintError(ex);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    SmartHome.Utils.PrintError(ex);
+                    MessageBox.Show("Выберите поле с записью");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Выберите поле с записью");
             }
         }
 
