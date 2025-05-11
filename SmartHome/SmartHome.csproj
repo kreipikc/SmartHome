@@ -72,6 +72,9 @@
     <Compile Include="Database\Devices.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Device_Data.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Device_Settings.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -102,7 +105,13 @@
     <Compile Include="Pages\AutomationRules\EditAutomationRulesPage.xaml.cs">
       <DependentUpon>EditAutomationRulesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\AutomationRules\Utils.cs" />
+    <Compile Include="Pages\DevicesData\AddDevicesDataPage.xaml.cs">
+      <DependentUpon>AddDevicesDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DevicesData\DeviceDataView.cs" />
+    <Compile Include="Pages\DevicesData\DevicesDataPage.xaml.cs">
+      <DependentUpon>DevicesDataPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Devices\AddDevicesPage.xaml.cs">
       <DependentUpon>AddDevicesPage.xaml</DependentUpon>
     </Compile>
@@ -121,7 +130,6 @@
     <Compile Include="Pages\Devices\Settings\EditDevicesSettingsPage.xaml.cs">
       <DependentUpon>EditDevicesSettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Devices\Utils.cs" />
     <Compile Include="Pages\Events\AddEventsPage.xaml.cs">
       <DependentUpon>AddEventsPage.xaml</DependentUpon>
     </Compile>
@@ -131,7 +139,6 @@
     <Compile Include="Pages\Events\EventsPage.xaml.cs">
       <DependentUpon>EventsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Events\Utils.cs" />
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +154,15 @@
     <Compile Include="Pages\Rooms\RoomsPage.xaml.cs">
       <DependentUpon>RoomsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SensorData\AddSensorDataPage.xaml.cs">
+      <DependentUpon>AddSensorDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SensorData\EditSensorDataPage.xaml.cs">
+      <DependentUpon>EditSensorDataPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\SensorData\SensorDataPage.xaml.cs">
+      <DependentUpon>SensorDataPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\TypeAction\AddTypeActionPage.xaml.cs">
       <DependentUpon>AddTypeActionPage.xaml</DependentUpon>
     </Compile>
@@ -156,6 +172,13 @@
     <Compile Include="Pages\TypeAction\TypeActionPage.xaml.cs">
       <DependentUpon>TypeActionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\UsersToDevices\AddUsersToDevicesPage.xaml.cs">
+      <DependentUpon>AddUsersToDevicesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UsersToDevices\UsersToDevicesPage.xaml.cs">
+      <DependentUpon>UsersToDevicesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UsersToDevices\UserToDevicesView.cs" />
     <Compile Include="Pages\Users\AddUsersPage.xaml.cs">
       <DependentUpon>AddUsersPage.xaml</DependentUpon>
     </Compile>
@@ -189,6 +212,9 @@
     <Compile Include="Database\Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\UsersToDevices.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\User_Preferences.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -214,6 +240,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\AutomationRules\EditAutomationRulesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DevicesData\AddDevicesDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DevicesData\DevicesDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,6 +307,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\SensorData\AddSensorDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SensorData\EditSensorDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SensorData\SensorDataPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\TypeAction\AddTypeActionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -282,6 +328,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\TypeAction\TypeActionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UsersToDevices\AddUsersToDevicesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\UsersToDevices\UsersToDevicesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -363,5 +417,6 @@
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

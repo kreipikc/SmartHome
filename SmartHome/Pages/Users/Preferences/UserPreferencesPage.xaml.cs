@@ -46,32 +46,30 @@ namespace SmartHome.Pages.Users.Preferences
 
         private void FilterAndSortUsersPreferences()
         {
-            var filteredDevices = allUsersPreferences.AsQueryable();
+            var filteredData = allUsersPreferences.AsQueryable();
 
-            // Фильтрация по названию
             if (!string.IsNullOrEmpty(SearchUsersPreferencesName.Text))
             {
-                filteredDevices = filteredDevices.Where(d => d.preference_name.IndexOf(SearchUsersPreferencesName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.preference_name.IndexOf(SearchUsersPreferencesName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            // Сортировка
             switch (SortUsersPreferencesCategory.SelectedIndex)
             {
                 case 0: // По ID
-                    filteredDevices = filteredDevices.OrderBy(d => d.user_id);
+                    filteredData = filteredData.OrderBy(d => d.user_id);
                     break;
                 case 1: // По названию
-                    filteredDevices = filteredDevices.OrderBy(d => d.preference_name);
+                    filteredData = filteredData.OrderBy(d => d.preference_name);
                     break;
                 case 2: // По значению
-                    filteredDevices = filteredDevices.OrderBy(d => d.preference_value);
+                    filteredData = filteredData.OrderBy(d => d.preference_value);
                     break;
                 case 3: // По дате создания
-                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    filteredData = filteredData.OrderBy(d => d.created_at);
                     break;
             }
 
-            ListViewUsersPreferences.ItemsSource = filteredDevices.ToList();
+            ListViewUsersPreferences.ItemsSource = filteredData.ToList();
         }
 
         private void AddUsersPreferences_Click(object sender, RoutedEventArgs e)

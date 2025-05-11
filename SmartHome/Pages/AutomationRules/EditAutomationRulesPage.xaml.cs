@@ -24,8 +24,8 @@ namespace SmartHome.Pages.AutomationRules
         public EditAutomationRulesPage()
         {
             InitializeComponent();
-            AutomationRules.Utils.LoadEventsToComboBox(EventComboBox);
-            AutomationRules.Utils.LoadDevicesToComboBox(DeviceComboBox);
+            SmartHome.Utils.LoadDataToComboBox(EventComboBox, SmartHome.Utils.ComboBoxName.Events);
+            SmartHome.Utils.LoadDataToComboBox(DeviceComboBox, SmartHome.Utils.ComboBoxName.Devices);
             AddData();
             AutomationRulesPage.AutomationRulesCurrent = null;
         }

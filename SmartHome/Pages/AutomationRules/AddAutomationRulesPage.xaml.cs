@@ -23,8 +23,8 @@ namespace SmartHome.Pages.AutomationRules
         public AddAutomationRulesPage()
         {
             InitializeComponent();
-            AutomationRules.Utils.LoadEventsToComboBox(EventComboBox);
-            AutomationRules.Utils.LoadDevicesToComboBox(DeviceComboBox);
+            SmartHome.Utils.LoadDataToComboBox(EventComboBox, SmartHome.Utils.ComboBoxName.Events);
+            SmartHome.Utils.LoadDataToComboBox(DeviceComboBox, SmartHome.Utils.ComboBoxName.Devices);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)

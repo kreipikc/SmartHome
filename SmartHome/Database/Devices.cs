@@ -18,9 +18,9 @@ namespace SmartHome.Database
         public Devices()
         {
             this.Automation_Rules = new HashSet<Automation_Rules>();
+            this.Device_Data = new HashSet<Device_Data>();
             this.Device_Settings = new HashSet<Device_Settings>();
-            this.Sensor_Data = new HashSet<Sensor_Data>();
-            this.Users = new HashSet<Users>();
+            this.UsersToDevices = new HashSet<UsersToDevices>();
         }
     
         public int device_id { get; set; }
@@ -32,11 +32,11 @@ namespace SmartHome.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Automation_Rules> Automation_Rules { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Device_Data> Device_Data { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Device_Settings> Device_Settings { get; set; }
         public virtual Rooms Rooms { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sensor_Data> Sensor_Data { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<UsersToDevices> UsersToDevices { get; set; }
     }
 }

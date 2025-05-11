@@ -13,10 +13,10 @@ namespace SmartHome.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class smart_homeEntities : DbContext
+    public partial class SmartHomeEntities : DbContext
     {
-        public smart_homeEntities()
-            : base("name=smart_homeEntities")
+        public SmartHomeEntities()
+            : base("name=SmartHomeEntities")
         {
         }
     
@@ -26,6 +26,7 @@ namespace SmartHome.Database
         }
     
         public virtual DbSet<Automation_Rules> Automation_Rules { get; set; }
+        public virtual DbSet<Device_Data> Device_Data { get; set; }
         public virtual DbSet<Device_Settings> Device_Settings { get; set; }
         public virtual DbSet<Devices> Devices { get; set; }
         public virtual DbSet<Events> Events { get; set; }
@@ -35,5 +36,6 @@ namespace SmartHome.Database
         public virtual DbSet<TypeAction> TypeAction { get; set; }
         public virtual DbSet<User_Preferences> User_Preferences { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<UsersToDevices> UsersToDevices { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace SmartHome.Pages.Devices
         public EditDevicesPage()
         {
             InitializeComponent();
-            Devices.Utils.LoadRoomsToComboBox(this.RoomsComboBox);
+            SmartHome.Utils.LoadDataToComboBox(this.RoomsComboBox, Utils.ComboBoxName.Rooms);
             AddData();
             DevicesPage.DevicesCurrent = null;
         }

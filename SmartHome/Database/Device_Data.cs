@@ -12,21 +12,14 @@ namespace SmartHome.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Sensor_Data
+    public partial class Device_Data
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Sensor_Data()
-        {
-            this.Device_Data = new HashSet<Device_Data>();
-        }
-    
+        public int id { get; set; }
+        public int device_id { get; set; }
         public int data_id { get; set; }
-        public int sensor_type_id { get; set; }
-        public double data { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Device_Data> Device_Data { get; set; }
-        public virtual TypeAction TypeAction { get; set; }
+        public virtual Sensor_Data Sensor_Data { get; set; }
+        public virtual Devices Devices { get; set; }
     }
 }

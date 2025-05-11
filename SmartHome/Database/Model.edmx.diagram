@@ -4,26 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="86b8e6848d384a35a80d6f58fd25436a" Name="Diagram1">
-        <EntityTypeShape EntityType="smart_homeModel.Automation_Rules" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.Device_Settings" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.Devices" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.Events" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.Rooms" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.Sensor_Data" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.TypeAction" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.User_Preferences" Width="1.5" PointX="9.75" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="smart_homeModel.Users" Width="1.5" PointX="7.5" PointY="8.375" IsExpanded="true" />
-        <AssociationConnector Association="smart_homeModel.FK__Automatio__actio__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.FK__Automatio__trigg__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.FK__Device_Se__devic__5629CD9C" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.FK__Devices__room_id__571DF1D5" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.FK__Events__event_ty__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.FK__Sensor_Da__senso__59063A47" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.FK__User_Pref__user___59FA5E80" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.Device_Data" ManuallyRouted="false" />
-        <AssociationConnector Association="smart_homeModel.UsersToDevices" ManuallyRouted="false" />
+      <Diagram DiagramId="06e9e811e6914bc88f85040292c4ea4e" Name="Diagram1">
+        <EntityTypeShape EntityType="SmartHomeModel.Automation_Rules" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.Device_Data" Width="1.5" PointX="8.25" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.Device_Settings" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.Devices" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.Events" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.Rooms" Width="1.5" PointX="0.75" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.Sensor_Data" Width="1.5" PointX="6" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.TypeAction" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.User_Preferences" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.Users" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SmartHomeModel.UsersToDevices" Width="1.5" PointX="8.25" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="SmartHomeModel.FK__Automatio__actio__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__Automatio__trigg__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__Device_Da__data___534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__Device_Da__devic__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__Device_Se__devic__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__Devices__room_id__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__UsersToDe__devic__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__Events__event_ty__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__Sensor_Da__senso__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__User_Pref__user___5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="SmartHomeModel.FK__UsersToDe__user___440B1D61" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

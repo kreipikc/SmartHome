@@ -18,11 +18,11 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Введите название" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
             <TextBox x:Name="SearchEventsName" HorizontalAlignment="Right"
-         TextChanged="SearchEventsName_TextChanged" Width="135" Margin="5"/>
+                TextChanged="SearchEventsName_TextChanged" Width="135" Margin="5"/>
 
             <TextBlock Text="Сортировать" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
             <ComboBox x:Name="SortEventsCategory" HorizontalAlignment="Right"
-          DisplayMemberPath="NameOfCategory" SelectedIndex="0" SelectionChanged="SortEventsCategory_SelectionChanged" Width="265" Margin="5">
+                DisplayMemberPath="NameOfCategory" SelectedIndex="0" SelectionChanged="SortEventsCategory_SelectionChanged" Width="265" Margin="5">
                 <ComboBox.ItemsSource>
                     <CompositeCollection>
                         <CollectionContainer Collection="{Binding EventsCategories}"/>

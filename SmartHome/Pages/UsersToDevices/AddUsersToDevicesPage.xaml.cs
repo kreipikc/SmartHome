@@ -13,55 +13,48 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartHome.Pages.Events
+namespace SmartHome.Pages.UsersToDevices
 {
     /// <summary>
-    /// Логика взаимодействия для AddEventsPage.xaml
+    /// Логика взаимодействия для AddUsersToDevicesPage.xaml
     /// </summary>
-    public partial class AddEventsPage : Page
+    public partial class AddUsersToDevicesPage : Page
     {
-        public AddEventsPage()
+        public AddUsersToDevicesPage()
         {
             InitializeComponent();
-            SmartHome.Utils.LoadDataToComboBox(TypeActionsComboBox, Utils.ComboBoxName.TypeActions);
+            SmartHome.Utils.LoadDataToComboBox(UserComboBox, Utils.ComboBoxName.Users);
+            SmartHome.Utils.LoadDataToComboBox(DeviceComboBox, Utils.ComboBoxName.Devices);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            string Name = NameTextBox.Text;
-            int TypeId = (int)TypeActionsComboBox.SelectedValue;
-
-            CreateEvents(Name, TypeId);
+            int DeviceID = (int)DeviceComboBox.SelectedValue;
+            int UserID = (int)UserComboBox.SelectedValue;
+            CreateClassUsersToDevices(DeviceID, UserID);
         }
 
-        public bool CreateEvents(string Name, int TypeId)
+        private bool CreateClassUsersToDevices(int DeviceID, int UserID)
         {
             try
             {
-                if (string.IsNullOrEmpty(Name))
+                if (Core.DB.UsersToDevices.Any(u => u.device_id == DeviceID && u.user_id == UserID))
                 {
-                    MessageBox.Show("Заполните все поля");
+                    MessageBox.Show("Такая связь UsersToDevices уже существует");
                     return false;
                 }
 
-                if (Core.DB.Events.Any(u => u.event_name == Name))
+                var newUsersToDevices = new Database.UsersToDevices
                 {
-                    MessageBox.Show("Событие с таким названием уже существует");
-                    return false;
-                }
-
-                var newEvent = new Database.Events
-                {
-                    event_name = Name,
-                    event_type_id = TypeId,
-                    timestamp = DateTime.Now,
+                    device_id = DeviceID,
+                    user_id = UserID,
                     created_at = DateTime.Now
                 };
 
-                Core.DB.Events.Add(newEvent);
+                Core.DB.UsersToDevices.Add(newUsersToDevices);
                 Core.DB.SaveChanges();
 
-                MessageBox.Show("Событие успешно создано");
+                MessageBox.Show("Связь UsersToDevices успешно создана");
                 NavigationService.GoBack();
                 return true;
             }

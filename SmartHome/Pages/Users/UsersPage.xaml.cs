@@ -47,32 +47,30 @@ namespace SmartHome.Pages.Users
 
         private void FilterAndSortUsers()
         {
-            var filteredDevices = allUsers.AsQueryable();
+            var filteredData = allUsers.AsQueryable();
 
-            // Фильтрация по названию
             if (!string.IsNullOrEmpty(SearchUsersName.Text))
             {
-                filteredDevices = filteredDevices.Where(d => d.username.IndexOf(SearchUsersName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.username.IndexOf(SearchUsersName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            // Сортировка
             switch (SortUsersCategory.SelectedIndex)
             {
                 case 0: // По ID
-                    filteredDevices = filteredDevices.OrderBy(d => d.user_id);
+                    filteredData = filteredData.OrderBy(d => d.user_id);
                     break;
                 case 1: // По названию
-                    filteredDevices = filteredDevices.OrderBy(d => d.username);
+                    filteredData = filteredData.OrderBy(d => d.username);
                     break;
                 case 2: // По почте
-                    filteredDevices = filteredDevices.OrderBy(d => d.email);
+                    filteredData = filteredData.OrderBy(d => d.email);
                     break;
                 case 3: // По дате создания
-                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    filteredData = filteredData.OrderBy(d => d.created_at);
                     break;
             }
 
-            DataGridUsers.ItemsSource = filteredDevices.ToList();
+            DataGridUsers.ItemsSource = filteredData.ToList();
         }
 
         private void AddUsers_Click(object sender, RoutedEventArgs e)

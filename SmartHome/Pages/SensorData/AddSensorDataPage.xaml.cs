@@ -1,5 +1,4 @@
-﻿using SmartHome.Database;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,56 +13,50 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartHome.Pages.Devices
+namespace SmartHome.Pages.SensorData
 {
     /// <summary>
-    /// Логика взаимодействия для AddDevicesPage.xaml
+    /// Логика взаимодействия для AddSensorDataPage.xaml
     /// </summary>
-    public partial class AddDevicesPage : Page
+    public partial class AddSensorDataPage : Page
     {
-        public AddDevicesPage()
+        public AddSensorDataPage()
         {
             InitializeComponent();
-            SmartHome.Utils.LoadDataToComboBox(this.RoomsComboBox, Utils.ComboBoxName.Rooms);
+            SmartHome.Utils.LoadDataToComboBox(TypeActionsComboBox, Utils.ComboBoxName.TypeActions);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            string Name = NameTextBox.Text;
-            int RoomsId = (int)RoomsComboBox.SelectedValue;
-            bool Status = (bool)StatusCheckBox.IsChecked;
+            string Data = DataTextBox.Text;
+            int TypeId = (int)TypeActionsComboBox.SelectedValue;
 
-            CreateDevices(Name, Status, RoomsId);
+            CreateEvents(Data, TypeId);
         }
 
-        public bool CreateDevices(string Name, bool Status, int RoomsId)
+        public bool CreateEvents(string Data, int TypeId)
         {
             try
             {
-                if (string.IsNullOrEmpty(Name))
+                if (string.IsNullOrEmpty(Data))
                 {
                     MessageBox.Show("Заполните все поля");
                     return false;
                 }
 
-                if (Core.DB.Devices.Any(u => u.device_name == Name))
-                {
-                    MessageBox.Show("Девайс с таким названием уже существует");
-                    return false;
-                }
+                double DataDouble = Convert.ToDouble(Data);
 
-                var newUser = new Database.Devices
+                var newData = new Database.Sensor_Data
                 {
-                    device_name = Name,
-                    status = Status,
-                    room_id = RoomsId,
+                    sensor_type_id = TypeId,
+                    data = DataDouble,
                     created_at = DateTime.Now
                 };
 
-                Core.DB.Devices.Add(newUser);
+                Core.DB.Sensor_Data.Add(newData);
                 Core.DB.SaveChanges();
 
-                MessageBox.Show("Девайс успешно создан");
+                MessageBox.Show("Сенсор данные успешно созданы");
                 NavigationService.GoBack();
                 return true;
             }

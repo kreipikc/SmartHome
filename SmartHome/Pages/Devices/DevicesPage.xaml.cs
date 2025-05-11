@@ -46,32 +46,30 @@ namespace SmartHome.Pages.Devices
 
         private void FilterAndSortDevices()
         {
-            var filteredDevices = allDevices.AsQueryable();
+            var filteredData = allDevices.AsQueryable();
 
-            // Фильтрация по названию
             if (!string.IsNullOrEmpty(SearchDevicesName.Text))
             {
-                filteredDevices = filteredDevices.Where(d => d.device_name.IndexOf(SearchDevicesName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.device_name.IndexOf(SearchDevicesName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            // Сортировка
             switch (SortDevicesCategory.SelectedIndex)
             {
                 case 0: // По названию
-                    filteredDevices = filteredDevices.OrderBy(d => d.device_name);
+                    filteredData = filteredData.OrderBy(d => d.device_name);
                     break;
                 case 1: // По статусу
-                    filteredDevices = filteredDevices.OrderBy(d => d.status);
+                    filteredData = filteredData.OrderBy(d => d.status);
                     break;
                 case 2: // По комнате
-                    filteredDevices = filteredDevices.OrderBy(d => d.room_id);
+                    filteredData = filteredData.OrderBy(d => d.room_id);
                     break;
                 case 3: // По дате создания
-                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    filteredData = filteredData.OrderBy(d => d.created_at);
                     break;
             }
 
-            DataGridDevices.ItemsSource = filteredDevices.ToList();
+            DataGridDevices.ItemsSource = filteredData.ToList();
         }
 
         private void AddDevices_Click(object sender, RoutedEventArgs e)

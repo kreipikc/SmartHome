@@ -47,33 +47,33 @@ namespace SmartHome.Pages.Events
 
         private void FilterAndSortEvents()
         {
-            var filteredDevices = allEvents.AsQueryable();
+            var filteredData = allEvents.AsQueryable();
 
             if (!string.IsNullOrEmpty(SearchEventsName.Text))
             {
-                filteredDevices = filteredDevices.Where(d => d.event_name.IndexOf(SearchEventsName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.event_name.IndexOf(SearchEventsName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             switch (SortEventsCategory.SelectedIndex)
             {
                 case 0: // По Id
-                    filteredDevices = filteredDevices.OrderBy(d => d.event_id);
+                    filteredData = filteredData.OrderBy(d => d.event_id);
                     break;
                 case 1: // По названию
-                    filteredDevices = filteredDevices.OrderBy(d => d.event_name);
+                    filteredData = filteredData.OrderBy(d => d.event_name);
                     break;
                 case 2: // ID типа действия события
-                    filteredDevices = filteredDevices.OrderBy(d => d.event_type_id);
+                    filteredData = filteredData.OrderBy(d => d.event_type_id);
                     break;
                 case 3: // По дате фиксации
-                    filteredDevices = filteredDevices.OrderBy(d => d.timestamp);
+                    filteredData = filteredData.OrderBy(d => d.timestamp);
                     break;
                 case 4: // По дате создания
-                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    filteredData = filteredData.OrderBy(d => d.created_at);
                     break;
             }
 
-            DataGridEvents.ItemsSource = filteredDevices.ToList();
+            DataGridEvents.ItemsSource = filteredData.ToList();
         }
 
         private void AddEvents_Click(object sender, RoutedEventArgs e)

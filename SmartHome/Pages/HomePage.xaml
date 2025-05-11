@@ -17,11 +17,14 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Height="40">
             <Button Content="Девайсы" Click="NavigateToDevices" Margin="0 0 5 0"/>
-            <Button Content="Комнаты" Click="NavigateToRooms" Margin="0 0 5 0"/>
+            <Button Content="Девайсы значения" Click="NavigateToDevicesData" Margin="0 0 5 0"/>
             <Button Content="Пользователи" Click="NavigateToUsers" Margin="0 0 5 0"/>
+            <Button Content="Польз. девайсы" Click="NavigateToUsersToDevices" Margin="0 0 5 0"/>
+            <Button Content="Комнаты" Click="NavigateToRooms" Margin="0 0 5 0"/>
             <Button Content="Правила" Click="NavigateToAutomationRules" Margin="0 0 5 0"/>
             <Button Content="События" Click="NavigateToEvents" Margin="0 0 5 0"/>
             <Button Content="Тип действия" Click="NavigateToTypeAction" Margin="0 0 5 0"/>
+            <Button Content="Данные датчика" Click="NavigateToSensorData" Margin="0 0 5 0"/>
         </StackPanel>
 
         <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden"/>

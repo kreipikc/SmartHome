@@ -46,38 +46,36 @@ namespace SmartHome.Pages.AutomationRules
 
         private void FilterAndSortAutomationRules()
         {
-            var filteredDevices = allAutomationRules.AsQueryable();
+            var filteredData = allAutomationRules.AsQueryable();
 
-            // Фильтрация по названию
             if (!string.IsNullOrEmpty(SearchAutomationRulesName.Text))
             {
-                filteredDevices = filteredDevices.Where(d => d.rule_name.IndexOf(SearchAutomationRulesName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.rule_name.IndexOf(SearchAutomationRulesName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            // Сортировка
             switch (SortAutomationRulesCategory.SelectedIndex)
             {
                 case 0: // По ID правила
-                    filteredDevices = filteredDevices.OrderBy(d => d.rule_id);
+                    filteredData = filteredData.OrderBy(d => d.rule_id);
                     break;
                 case 1: // По названию правила
-                    filteredDevices = filteredDevices.OrderBy(d => d.rule_name);
+                    filteredData = filteredData.OrderBy(d => d.rule_name);
                     break;
                 case 2: // По ID события
-                    filteredDevices = filteredDevices.OrderBy(d => d.trigger_event_id);
+                    filteredData = filteredData.OrderBy(d => d.trigger_event_id);
                     break;
                 case 3: // По ID девайса
-                    filteredDevices = filteredDevices.OrderBy(d => d.action_device_id);
+                    filteredData = filteredData.OrderBy(d => d.action_device_id);
                     break;
                 case 4: // По действию
-                    filteredDevices = filteredDevices.OrderBy(d => d.action);
+                    filteredData = filteredData.OrderBy(d => d.action);
                     break;
                 case 5: // По дате создания
-                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    filteredData = filteredData.OrderBy(d => d.created_at);
                     break;
             }
 
-            DataGridAutomationRules.ItemsSource = filteredDevices.ToList();
+            DataGridAutomationRules.ItemsSource = filteredData.ToList();
         }
 
         private void AddAutomationRules_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,55 +14,48 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartHome.Pages.Events
+namespace SmartHome.Pages.DevicesData
 {
     /// <summary>
-    /// Логика взаимодействия для AddEventsPage.xaml
+    /// Логика взаимодействия для AddDevicesDataPage.xaml
     /// </summary>
-    public partial class AddEventsPage : Page
+    public partial class AddDevicesDataPage : Page
     {
-        public AddEventsPage()
+        public AddDevicesDataPage()
         {
             InitializeComponent();
-            SmartHome.Utils.LoadDataToComboBox(TypeActionsComboBox, Utils.ComboBoxName.TypeActions);
+            SmartHome.Utils.LoadDataToComboBox(DeviceComboBox, Utils.ComboBoxName.Devices);
+            SmartHome.Utils.LoadDataToComboBox(SensorDataComboBox, Utils.ComboBoxName.SensorData);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            string Name = NameTextBox.Text;
-            int TypeId = (int)TypeActionsComboBox.SelectedValue;
-
-            CreateEvents(Name, TypeId);
+            int DeviceID = (int)DeviceComboBox.SelectedValue;
+            int SensorDataID = (int)SensorDataComboBox.SelectedValue;
+            CreateClassDeviceData(DeviceID, SensorDataID);
         }
 
-        public bool CreateEvents(string Name, int TypeId)
+        private bool CreateClassDeviceData(int DeviceID, int SensorDataID)
         {
             try
             {
-                if (string.IsNullOrEmpty(Name))
+                if (Core.DB.Device_Data.Any(u => u.device_id == DeviceID && u.data_id == SensorDataID))
                 {
-                    MessageBox.Show("Заполните все поля");
+                    MessageBox.Show("Такая связь Device_Data уже существует");
                     return false;
                 }
 
-                if (Core.DB.Events.Any(u => u.event_name == Name))
+                var newDeviceData = new Database.Device_Data
                 {
-                    MessageBox.Show("Событие с таким названием уже существует");
-                    return false;
-                }
-
-                var newEvent = new Database.Events
-                {
-                    event_name = Name,
-                    event_type_id = TypeId,
-                    timestamp = DateTime.Now,
+                    device_id = DeviceID,
+                    data_id = SensorDataID,
                     created_at = DateTime.Now
                 };
 
-                Core.DB.Events.Add(newEvent);
+                Core.DB.Device_Data.Add(newDeviceData);
                 Core.DB.SaveChanges();
 
-                MessageBox.Show("Событие успешно создано");
+                MessageBox.Show("Связь Device_Data успешно создана");
                 NavigationService.GoBack();
                 return true;
             }

@@ -1,5 +1,4 @@
-﻿using SmartHome.Pages.AutomationRules;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,29 +13,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SmartHome.Pages.Events
+namespace SmartHome.Pages.SensorData
 {
     /// <summary>
-    /// Логика взаимодействия для EditEventsPage.xaml
+    /// Логика взаимодействия для EditSensorDataPage.xaml
     /// </summary>
-    public partial class EditEventsPage : Page
+    public partial class EditSensorDataPage : Page
     {
-        public EditEventsPage()
+        public EditSensorDataPage()
         {
             InitializeComponent();
             SmartHome.Utils.LoadDataToComboBox(TypeActionsComboBox, Utils.ComboBoxName.TypeActions);
             AddData();
-            EventsPage.EventsCurrent = null;
+            SensorDataPage.SensorDataCurrent = null;
         }
 
         private void AddData()
         {
             try
             {
-                IdTextBox.Text = Convert.ToString(EventsPage.EventsCurrent.event_id);
-                NameTextBox.Text = EventsPage.EventsCurrent.event_name;
+                IdTextBox.Text = Convert.ToString(SensorDataPage.SensorDataCurrent.data_id);
+                DataTextBox.Text = SensorDataPage.SensorDataCurrent.data.ToString();
 
-                var currentTypeId = EventsPage.EventsCurrent.event_type_id;
+                var currentTypeId = SensorDataPage.SensorDataCurrent.sensor_type_id;
                 var selectedType = TypeActionsComboBox.Items
                     .OfType<Database.TypeAction>()
                     .FirstOrDefault(r => r.type_action_id == currentTypeId);
@@ -55,43 +54,38 @@ namespace SmartHome.Pages.Events
         private void Update_Click(object sender, RoutedEventArgs e)
         {
             string IdStr = IdTextBox.Text;
-            string Name = NameTextBox.Text;
+            string Data = DataTextBox.Text;
             int TypeId = (int)TypeActionsComboBox.SelectedValue;
 
-            UpdateEvent(IdStr, Name, TypeId);
+            UpdateEvent(IdStr, Data, TypeId);
         }
 
-        public bool UpdateEvent(string IdStr, string Name, int TypeId)
+        public bool UpdateEvent(string IdStr, string Data, int TypeId)
         {
             try
             {
                 if (string.IsNullOrEmpty(IdStr) ||
-                    string.IsNullOrEmpty(Name))
+                    string.IsNullOrEmpty(Data))
                 {
                     MessageBox.Show("Заполните все поля");
                     return false;
                 }
 
                 int Id = Convert.ToInt32(IdStr);
+                double DataDouble = Convert.ToDouble(Data);
 
-                if (Core.DB.Events.Any(u => u.event_name == Name && u.event_id != Id))
+                var sens_data = Core.DB.Sensor_Data.FirstOrDefault(h => h.data_id == Id);
+                if (sens_data == null)
                 {
-                    MessageBox.Show("Событие с таким именем уже существует");
+                    MessageBox.Show("Сеснор данные не найдены");
                     return false;
                 }
 
-                var events = Core.DB.Events.FirstOrDefault(h => h.event_id == Id);
-                if (events == null)
-                {
-                    MessageBox.Show("Событие не найдено");
-                    return false;
-                }
-
-                events.event_name = Name;
-                events.event_type_id = TypeId;
+                sens_data.data = DataDouble;
+                sens_data.sensor_type_id = TypeId;
 
                 Core.DB.SaveChanges();
-                MessageBox.Show("Событие успешно обновлено");
+                MessageBox.Show("Сеснор данные успешно обновлены");
 
                 NavigationService.GoBack();
                 return true;

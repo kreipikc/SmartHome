@@ -18,7 +18,7 @@ namespace SmartHome.Database
         public Users()
         {
             this.User_Preferences = new HashSet<User_Preferences>();
-            this.Devices = new HashSet<Devices>();
+            this.UsersToDevices = new HashSet<UsersToDevices>();
         }
     
         public int user_id { get; set; }
@@ -30,6 +30,6 @@ namespace SmartHome.Database
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_Preferences> User_Preferences { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Devices> Devices { get; set; }
+        public virtual ICollection<UsersToDevices> UsersToDevices { get; set; }
     }
 }

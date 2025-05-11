@@ -46,29 +46,27 @@ namespace SmartHome.Pages.Rooms
 
         private void FilterAndSortRooms()
         {
-            var filteredDevices = allRooms.AsQueryable();
+            var filteredData = allRooms.AsQueryable();
 
-            // Фильтрация по названию
             if (!string.IsNullOrEmpty(SearchRoomsName.Text))
             {
-                filteredDevices = filteredDevices.Where(d => d.room_name.IndexOf(SearchRoomsName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.room_name.IndexOf(SearchRoomsName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
-            // Сортировка
             switch (SortRoomsCategory.SelectedIndex)
             {
                 case 0: // По названию
-                    filteredDevices = filteredDevices.OrderBy(d => d.room_name);
+                    filteredData = filteredData.OrderBy(d => d.room_name);
                     break;
                 case 1: // По этажу
-                    filteredDevices = filteredDevices.OrderBy(d => d.floor);
+                    filteredData = filteredData.OrderBy(d => d.floor);
                     break;
                 case 2: // По дате создания
-                    filteredDevices = filteredDevices.OrderBy(d => d.created_at);
+                    filteredData = filteredData.OrderBy(d => d.created_at);
                     break;
             }
 
-            DataGridRooms.ItemsSource = filteredDevices.ToList();
+            DataGridRooms.ItemsSource = filteredData.ToList();
         }
 
         private void AddRooms_Click(object sender, RoutedEventArgs e)

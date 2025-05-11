@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище smart_homeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище SmartHomeModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Automation_Rules">
           <Key>
             <PropertyRef Name="rule_id" />
@@ -18,11 +18,12 @@
         </EntityType>
         <EntityType Name="Device_Data">
           <Key>
-            <PropertyRef Name="device_id" />
-            <PropertyRef Name="data_id" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="device_id" Type="int" Nullable="false" />
           <Property Name="data_id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
         </EntityType>
         <EntityType Name="Device_Settings">
           <Key>
@@ -111,13 +112,14 @@
         </EntityType>
         <EntityType Name="UsersToDevices">
           <Key>
-            <PropertyRef Name="device_id" />
-            <PropertyRef Name="user_id" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="device_id" Type="int" Nullable="false" />
           <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" />
         </EntityType>
-        <Association Name="FK__Automatio__actio__52593CB8">
+        <Association Name="FK__Automatio__actio__5BE2A6F2">
           <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="Automation_Rules" Type="Self.Automation_Rules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -129,7 +131,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Automatio__trigg__534D60F1">
+        <Association Name="FK__Automatio__trigg__5AEE82B9">
           <End Role="Events" Type="Self.Events" Multiplicity="1" />
           <End Role="Automation_Rules" Type="Self.Automation_Rules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -141,7 +143,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Device_Da__data___5441852A">
+        <Association Name="FK__Device_Da__data___534D60F1">
           <End Role="Sensor_Data" Type="Self.Sensor_Data" Multiplicity="1" />
           <End Role="Device_Data" Type="Self.Device_Data" Multiplicity="*" />
           <ReferentialConstraint>
@@ -153,7 +155,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Device_Da__devic__5535A963">
+        <Association Name="FK__Device_Da__devic__52593CB8">
           <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="Device_Data" Type="Self.Device_Data" Multiplicity="*" />
           <ReferentialConstraint>
@@ -165,7 +167,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Device_Se__devic__5629CD9C">
+        <Association Name="FK__Device_Se__devic__47DBAE45">
           <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="Device_Settings" Type="Self.Device_Settings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -177,7 +179,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Devices__room_id__571DF1D5">
+        <Association Name="FK__Devices__room_id__3E52440B">
           <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -189,7 +191,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__event_ty__5812160E">
+        <Association Name="FK__Events__event_ty__571DF1D5">
           <End Role="TypeAction" Type="Self.TypeAction" Multiplicity="1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -201,7 +203,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sensor_Da__senso__59063A47">
+        <Association Name="FK__Sensor_Da__senso__4D94879B">
           <End Role="TypeAction" Type="Self.TypeAction" Multiplicity="1" />
           <End Role="Sensor_Data" Type="Self.Sensor_Data" Multiplicity="*" />
           <ReferentialConstraint>
@@ -213,7 +215,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__User_Pref__user___59FA5E80">
+        <Association Name="FK__User_Pref__user___5FB337D6">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="User_Preferences" Type="Self.User_Preferences" Multiplicity="*" />
           <ReferentialConstraint>
@@ -225,7 +227,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UsersToDe__devic__5AEE82B9">
+        <Association Name="FK__UsersToDe__devic__4316F928">
           <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="UsersToDevices" Type="Self.UsersToDevices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -237,7 +239,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UsersToDe__user___5BE2A6F2">
+        <Association Name="FK__UsersToDe__user___440B1D61">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UsersToDevices" Type="Self.UsersToDevices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -249,7 +251,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище smart_homeModelContainer">
+        <EntityContainer Name="Хранилище SmartHomeModelContainer">
           <EntitySet Name="Automation_Rules" EntityType="Self.Automation_Rules" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device_Data" EntityType="Self.Device_Data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Device_Settings" EntityType="Self.Device_Settings" Schema="dbo" store:Type="Tables" />
@@ -262,47 +264,47 @@
           <EntitySet Name="User_Preferences" EntityType="Self.User_Preferences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersToDevices" EntityType="Self.UsersToDevices" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Automatio__actio__52593CB8" Association="Self.FK__Automatio__actio__52593CB8">
+          <AssociationSet Name="FK__Automatio__actio__5BE2A6F2" Association="Self.FK__Automatio__actio__5BE2A6F2">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="Automation_Rules" EntitySet="Automation_Rules" />
           </AssociationSet>
-          <AssociationSet Name="FK__Automatio__trigg__534D60F1" Association="Self.FK__Automatio__trigg__534D60F1">
+          <AssociationSet Name="FK__Automatio__trigg__5AEE82B9" Association="Self.FK__Automatio__trigg__5AEE82B9">
             <End Role="Events" EntitySet="Events" />
             <End Role="Automation_Rules" EntitySet="Automation_Rules" />
           </AssociationSet>
-          <AssociationSet Name="FK__Device_Da__data___5441852A" Association="Self.FK__Device_Da__data___5441852A">
+          <AssociationSet Name="FK__Device_Da__data___534D60F1" Association="Self.FK__Device_Da__data___534D60F1">
             <End Role="Sensor_Data" EntitySet="Sensor_Data" />
             <End Role="Device_Data" EntitySet="Device_Data" />
           </AssociationSet>
-          <AssociationSet Name="FK__Device_Da__devic__5535A963" Association="Self.FK__Device_Da__devic__5535A963">
+          <AssociationSet Name="FK__Device_Da__devic__52593CB8" Association="Self.FK__Device_Da__devic__52593CB8">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="Device_Data" EntitySet="Device_Data" />
           </AssociationSet>
-          <AssociationSet Name="FK__Device_Se__devic__5629CD9C" Association="Self.FK__Device_Se__devic__5629CD9C">
+          <AssociationSet Name="FK__Device_Se__devic__47DBAE45" Association="Self.FK__Device_Se__devic__47DBAE45">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="Device_Settings" EntitySet="Device_Settings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Devices__room_id__571DF1D5" Association="Self.FK__Devices__room_id__571DF1D5">
+          <AssociationSet Name="FK__Devices__room_id__3E52440B" Association="Self.FK__Devices__room_id__3E52440B">
             <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__event_ty__5812160E" Association="Self.FK__Events__event_ty__5812160E">
+          <AssociationSet Name="FK__Events__event_ty__571DF1D5" Association="Self.FK__Events__event_ty__571DF1D5">
             <End Role="TypeAction" EntitySet="TypeAction" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sensor_Da__senso__59063A47" Association="Self.FK__Sensor_Da__senso__59063A47">
+          <AssociationSet Name="FK__Sensor_Da__senso__4D94879B" Association="Self.FK__Sensor_Da__senso__4D94879B">
             <End Role="TypeAction" EntitySet="TypeAction" />
             <End Role="Sensor_Data" EntitySet="Sensor_Data" />
           </AssociationSet>
-          <AssociationSet Name="FK__User_Pref__user___59FA5E80" Association="Self.FK__User_Pref__user___59FA5E80">
+          <AssociationSet Name="FK__User_Pref__user___5FB337D6" Association="Self.FK__User_Pref__user___5FB337D6">
             <End Role="Users" EntitySet="Users" />
             <End Role="User_Preferences" EntitySet="User_Preferences" />
           </AssociationSet>
-          <AssociationSet Name="FK__UsersToDe__devic__5AEE82B9" Association="Self.FK__UsersToDe__devic__5AEE82B9">
+          <AssociationSet Name="FK__UsersToDe__devic__4316F928" Association="Self.FK__UsersToDe__devic__4316F928">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="UsersToDevices" EntitySet="UsersToDevices" />
           </AssociationSet>
-          <AssociationSet Name="FK__UsersToDe__user___5BE2A6F2" Association="Self.FK__UsersToDe__user___5BE2A6F2">
+          <AssociationSet Name="FK__UsersToDe__user___440B1D61" Association="Self.FK__UsersToDe__user___440B1D61">
             <End Role="Users" EntitySet="Users" />
             <End Role="UsersToDevices" EntitySet="UsersToDevices" />
           </AssociationSet>
@@ -311,7 +313,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="smart_homeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SmartHomeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Automation_Rules">
           <Key>
             <PropertyRef Name="rule_id" />
@@ -322,8 +324,19 @@
           <Property Name="action_device_id" Type="Int32" Nullable="false" />
           <Property Name="action" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Devices" Relationship="Self.FK__Automatio__actio__52593CB8" FromRole="Automation_Rules" ToRole="Devices" />
-          <NavigationProperty Name="Events" Relationship="Self.FK__Automatio__trigg__534D60F1" FromRole="Automation_Rules" ToRole="Events" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__Automatio__actio__5BE2A6F2" FromRole="Automation_Rules" ToRole="Devices" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Automatio__trigg__5AEE82B9" FromRole="Automation_Rules" ToRole="Events" />
+        </EntityType>
+        <EntityType Name="Device_Data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="Int32" Nullable="false" />
+          <Property Name="data_id" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Sensor_Data" Relationship="Self.FK__Device_Da__data___534D60F1" FromRole="Device_Data" ToRole="Sensor_Data" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__Device_Da__devic__52593CB8" FromRole="Device_Data" ToRole="Devices" />
         </EntityType>
         <EntityType Name="Device_Settings">
           <Key>
@@ -334,7 +347,7 @@
           <Property Name="setting_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="setting_value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Devices" Relationship="Self.FK__Device_Se__devic__5629CD9C" FromRole="Device_Settings" ToRole="Devices" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__Device_Se__devic__47DBAE45" FromRole="Device_Settings" ToRole="Devices" />
         </EntityType>
         <EntityType Name="Devices">
           <Key>
@@ -345,11 +358,11 @@
           <Property Name="status" Type="Boolean" Nullable="false" />
           <Property Name="room_id" Type="Int32" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Automation_Rules" Relationship="Self.FK__Automatio__actio__52593CB8" FromRole="Devices" ToRole="Automation_Rules" />
-          <NavigationProperty Name="Device_Settings" Relationship="Self.FK__Device_Se__devic__5629CD9C" FromRole="Devices" ToRole="Device_Settings" />
-          <NavigationProperty Name="Rooms" Relationship="Self.FK__Devices__room_id__571DF1D5" FromRole="Devices" ToRole="Rooms" />
-          <NavigationProperty Name="Sensor_Data" Relationship="Self.Device_Data" FromRole="Devices" ToRole="Sensor_Data" />
-          <NavigationProperty Name="Users" Relationship="Self.UsersToDevices" FromRole="Devices" ToRole="Users" />
+          <NavigationProperty Name="Automation_Rules" Relationship="Self.FK__Automatio__actio__5BE2A6F2" FromRole="Devices" ToRole="Automation_Rules" />
+          <NavigationProperty Name="Device_Data" Relationship="Self.FK__Device_Da__devic__52593CB8" FromRole="Devices" ToRole="Device_Data" />
+          <NavigationProperty Name="Device_Settings" Relationship="Self.FK__Device_Se__devic__47DBAE45" FromRole="Devices" ToRole="Device_Settings" />
+          <NavigationProperty Name="Rooms" Relationship="Self.FK__Devices__room_id__3E52440B" FromRole="Devices" ToRole="Rooms" />
+          <NavigationProperty Name="UsersToDevices" Relationship="Self.FK__UsersToDe__devic__4316F928" FromRole="Devices" ToRole="UsersToDevices" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -360,8 +373,8 @@
           <Property Name="event_type_id" Type="Int32" Nullable="false" />
           <Property Name="timestamp" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Automation_Rules" Relationship="Self.FK__Automatio__trigg__534D60F1" FromRole="Events" ToRole="Automation_Rules" />
-          <NavigationProperty Name="TypeAction" Relationship="Self.FK__Events__event_ty__5812160E" FromRole="Events" ToRole="TypeAction" />
+          <NavigationProperty Name="Automation_Rules" Relationship="Self.FK__Automatio__trigg__5AEE82B9" FromRole="Events" ToRole="Automation_Rules" />
+          <NavigationProperty Name="TypeAction" Relationship="Self.FK__Events__event_ty__571DF1D5" FromRole="Events" ToRole="TypeAction" />
         </EntityType>
         <EntityType Name="Rooms">
           <Key>
@@ -371,7 +384,7 @@
           <Property Name="room_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="floor" Type="Int32" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Devices" Relationship="Self.FK__Devices__room_id__571DF1D5" FromRole="Rooms" ToRole="Devices" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__Devices__room_id__3E52440B" FromRole="Rooms" ToRole="Devices" />
         </EntityType>
         <EntityType Name="Sensor_Data">
           <Key>
@@ -381,8 +394,8 @@
           <Property Name="sensor_type_id" Type="Int32" Nullable="false" />
           <Property Name="data" Type="Double" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="TypeAction" Relationship="Self.FK__Sensor_Da__senso__59063A47" FromRole="Sensor_Data" ToRole="TypeAction" />
-          <NavigationProperty Name="Devices" Relationship="Self.Device_Data" FromRole="Sensor_Data" ToRole="Devices" />
+          <NavigationProperty Name="Device_Data" Relationship="Self.FK__Device_Da__data___534D60F1" FromRole="Sensor_Data" ToRole="Device_Data" />
+          <NavigationProperty Name="TypeAction" Relationship="Self.FK__Sensor_Da__senso__4D94879B" FromRole="Sensor_Data" ToRole="TypeAction" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -400,8 +413,8 @@
           </Key>
           <Property Name="type_action_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Events" Relationship="Self.FK__Events__event_ty__5812160E" FromRole="TypeAction" ToRole="Events" />
-          <NavigationProperty Name="Sensor_Data" Relationship="Self.FK__Sensor_Da__senso__59063A47" FromRole="TypeAction" ToRole="Sensor_Data" />
+          <NavigationProperty Name="Events" Relationship="Self.FK__Events__event_ty__571DF1D5" FromRole="TypeAction" ToRole="Events" />
+          <NavigationProperty Name="Sensor_Data" Relationship="Self.FK__Sensor_Da__senso__4D94879B" FromRole="TypeAction" ToRole="Sensor_Data" />
         </EntityType>
         <EntityType Name="User_Preferences">
           <Key>
@@ -412,7 +425,7 @@
           <Property Name="preference_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="preference_value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__User_Pref__user___59FA5E80" FromRole="User_Preferences" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__User_Pref__user___5FB337D6" FromRole="User_Preferences" ToRole="Users" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -423,10 +436,21 @@
           <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="created_at" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="User_Preferences" Relationship="Self.FK__User_Pref__user___59FA5E80" FromRole="Users" ToRole="User_Preferences" />
-          <NavigationProperty Name="Devices" Relationship="Self.UsersToDevices" FromRole="Users" ToRole="Devices" />
+          <NavigationProperty Name="User_Preferences" Relationship="Self.FK__User_Pref__user___5FB337D6" FromRole="Users" ToRole="User_Preferences" />
+          <NavigationProperty Name="UsersToDevices" Relationship="Self.FK__UsersToDe__user___440B1D61" FromRole="Users" ToRole="UsersToDevices" />
         </EntityType>
-        <Association Name="FK__Automatio__actio__52593CB8">
+        <EntityType Name="UsersToDevices">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="device_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Devices" Relationship="Self.FK__UsersToDe__devic__4316F928" FromRole="UsersToDevices" ToRole="Devices" />
+          <NavigationProperty Name="Users" Relationship="Self.FK__UsersToDe__user___440B1D61" FromRole="UsersToDevices" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__Automatio__actio__5BE2A6F2">
           <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="Automation_Rules" Type="Self.Automation_Rules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -438,7 +462,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Automatio__trigg__534D60F1">
+        <Association Name="FK__Automatio__trigg__5AEE82B9">
           <End Role="Events" Type="Self.Events" Multiplicity="1" />
           <End Role="Automation_Rules" Type="Self.Automation_Rules" Multiplicity="*" />
           <ReferentialConstraint>
@@ -450,7 +474,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Device_Se__devic__5629CD9C">
+        <Association Name="FK__Device_Da__data___534D60F1">
+          <End Role="Sensor_Data" Type="Self.Sensor_Data" Multiplicity="1" />
+          <End Role="Device_Data" Type="Self.Device_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sensor_Data">
+              <PropertyRef Name="data_id" />
+            </Principal>
+            <Dependent Role="Device_Data">
+              <PropertyRef Name="data_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Device_Da__devic__52593CB8">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="Device_Data" Type="Self.Device_Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="device_id" />
+            </Principal>
+            <Dependent Role="Device_Data">
+              <PropertyRef Name="device_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Device_Se__devic__47DBAE45">
           <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
           <End Role="Device_Settings" Type="Self.Device_Settings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -462,7 +510,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Devices__room_id__571DF1D5">
+        <Association Name="FK__Devices__room_id__3E52440B">
           <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
           <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
           <ReferentialConstraint>
@@ -474,7 +522,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Events__event_ty__5812160E">
+        <Association Name="FK__UsersToDe__devic__4316F928">
+          <End Role="Devices" Type="Self.Devices" Multiplicity="1" />
+          <End Role="UsersToDevices" Type="Self.UsersToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Devices">
+              <PropertyRef Name="device_id" />
+            </Principal>
+            <Dependent Role="UsersToDevices">
+              <PropertyRef Name="device_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Events__event_ty__571DF1D5">
           <End Role="TypeAction" Type="Self.TypeAction" Multiplicity="1" />
           <End Role="Events" Type="Self.Events" Multiplicity="*" />
           <ReferentialConstraint>
@@ -486,7 +546,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sensor_Da__senso__59063A47">
+        <Association Name="FK__Sensor_Da__senso__4D94879B">
           <End Role="TypeAction" Type="Self.TypeAction" Multiplicity="1" />
           <End Role="Sensor_Data" Type="Self.Sensor_Data" Multiplicity="*" />
           <ReferentialConstraint>
@@ -498,7 +558,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__User_Pref__user___59FA5E80">
+        <Association Name="FK__User_Pref__user___5FB337D6">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="User_Preferences" Type="Self.User_Preferences" Multiplicity="*" />
           <ReferentialConstraint>
@@ -510,16 +570,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Device_Data">
-          <End Role="Sensor_Data" Type="Self.Sensor_Data" Multiplicity="*" />
-          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
+        <Association Name="FK__UsersToDe__user___440B1D61">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersToDevices" Type="Self.UsersToDevices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="UsersToDevices">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <Association Name="UsersToDevices">
-          <End Role="Devices" Type="Self.Devices" Multiplicity="*" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="smart_homeEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SmartHomeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Automation_Rules" EntityType="Self.Automation_Rules" />
+          <EntitySet Name="Device_Data" EntityType="Self.Device_Data" />
           <EntitySet Name="Device_Settings" EntityType="Self.Device_Settings" />
           <EntitySet Name="Devices" EntityType="Self.Devices" />
           <EntitySet Name="Events" EntityType="Self.Events" />
@@ -529,41 +594,50 @@
           <EntitySet Name="TypeAction" EntityType="Self.TypeAction" />
           <EntitySet Name="User_Preferences" EntityType="Self.User_Preferences" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK__Automatio__actio__52593CB8" Association="Self.FK__Automatio__actio__52593CB8">
+          <EntitySet Name="UsersToDevices" EntityType="Self.UsersToDevices" />
+          <AssociationSet Name="FK__Automatio__actio__5BE2A6F2" Association="Self.FK__Automatio__actio__5BE2A6F2">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="Automation_Rules" EntitySet="Automation_Rules" />
           </AssociationSet>
-          <AssociationSet Name="FK__Automatio__trigg__534D60F1" Association="Self.FK__Automatio__trigg__534D60F1">
+          <AssociationSet Name="FK__Automatio__trigg__5AEE82B9" Association="Self.FK__Automatio__trigg__5AEE82B9">
             <End Role="Events" EntitySet="Events" />
             <End Role="Automation_Rules" EntitySet="Automation_Rules" />
           </AssociationSet>
-          <AssociationSet Name="FK__Device_Se__devic__5629CD9C" Association="Self.FK__Device_Se__devic__5629CD9C">
+          <AssociationSet Name="FK__Device_Da__data___534D60F1" Association="Self.FK__Device_Da__data___534D60F1">
+            <End Role="Sensor_Data" EntitySet="Sensor_Data" />
+            <End Role="Device_Data" EntitySet="Device_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Device_Da__devic__52593CB8" Association="Self.FK__Device_Da__devic__52593CB8">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="Device_Data" EntitySet="Device_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Device_Se__devic__47DBAE45" Association="Self.FK__Device_Se__devic__47DBAE45">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="Device_Settings" EntitySet="Device_Settings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Devices__room_id__571DF1D5" Association="Self.FK__Devices__room_id__571DF1D5">
+          <AssociationSet Name="FK__Devices__room_id__3E52440B" Association="Self.FK__Devices__room_id__3E52440B">
             <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Devices" EntitySet="Devices" />
           </AssociationSet>
-          <AssociationSet Name="FK__Events__event_ty__5812160E" Association="Self.FK__Events__event_ty__5812160E">
+          <AssociationSet Name="FK__UsersToDe__devic__4316F928" Association="Self.FK__UsersToDe__devic__4316F928">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="UsersToDevices" EntitySet="UsersToDevices" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Events__event_ty__571DF1D5" Association="Self.FK__Events__event_ty__571DF1D5">
             <End Role="TypeAction" EntitySet="TypeAction" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sensor_Da__senso__59063A47" Association="Self.FK__Sensor_Da__senso__59063A47">
+          <AssociationSet Name="FK__Sensor_Da__senso__4D94879B" Association="Self.FK__Sensor_Da__senso__4D94879B">
             <End Role="TypeAction" EntitySet="TypeAction" />
             <End Role="Sensor_Data" EntitySet="Sensor_Data" />
           </AssociationSet>
-          <AssociationSet Name="FK__User_Pref__user___59FA5E80" Association="Self.FK__User_Pref__user___59FA5E80">
+          <AssociationSet Name="FK__User_Pref__user___5FB337D6" Association="Self.FK__User_Pref__user___5FB337D6">
             <End Role="Users" EntitySet="Users" />
             <End Role="User_Preferences" EntitySet="User_Preferences" />
           </AssociationSet>
-          <AssociationSet Name="Device_Data" Association="Self.Device_Data">
-            <End Role="Sensor_Data" EntitySet="Sensor_Data" />
-            <End Role="Devices" EntitySet="Devices" />
-          </AssociationSet>
-          <AssociationSet Name="UsersToDevices" Association="Self.UsersToDevices">
-            <End Role="Devices" EntitySet="Devices" />
+          <AssociationSet Name="FK__UsersToDe__user___440B1D61" Association="Self.FK__UsersToDe__user___440B1D61">
             <End Role="Users" EntitySet="Users" />
+            <End Role="UsersToDevices" EntitySet="UsersToDevices" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -571,9 +645,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище smart_homeModelContainer" CdmEntityContainer="smart_homeEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SmartHomeModelContainer" CdmEntityContainer="SmartHomeEntities">
           <EntitySetMapping Name="Automation_Rules">
-            <EntityTypeMapping TypeName="smart_homeModel.Automation_Rules">
+            <EntityTypeMapping TypeName="SmartHomeModel.Automation_Rules">
               <MappingFragment StoreEntitySet="Automation_Rules">
                 <ScalarProperty Name="rule_id" ColumnName="rule_id" />
                 <ScalarProperty Name="rule_name" ColumnName="rule_name" />
@@ -584,8 +658,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Device_Data">
+            <EntityTypeMapping TypeName="SmartHomeModel.Device_Data">
+              <MappingFragment StoreEntitySet="Device_Data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="data_id" ColumnName="data_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Device_Settings">
-            <EntityTypeMapping TypeName="smart_homeModel.Device_Settings">
+            <EntityTypeMapping TypeName="SmartHomeModel.Device_Settings">
               <MappingFragment StoreEntitySet="Device_Settings">
                 <ScalarProperty Name="setting_id" ColumnName="setting_id" />
                 <ScalarProperty Name="device_id" ColumnName="device_id" />
@@ -596,7 +680,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Devices">
-            <EntityTypeMapping TypeName="smart_homeModel.Devices">
+            <EntityTypeMapping TypeName="SmartHomeModel.Devices">
               <MappingFragment StoreEntitySet="Devices">
                 <ScalarProperty Name="device_id" ColumnName="device_id" />
                 <ScalarProperty Name="device_name" ColumnName="device_name" />
@@ -607,7 +691,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="smart_homeModel.Events">
+            <EntityTypeMapping TypeName="SmartHomeModel.Events">
               <MappingFragment StoreEntitySet="Events">
                 <ScalarProperty Name="event_id" ColumnName="event_id" />
                 <ScalarProperty Name="event_name" ColumnName="event_name" />
@@ -618,7 +702,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="smart_homeModel.Rooms">
+            <EntityTypeMapping TypeName="SmartHomeModel.Rooms">
               <MappingFragment StoreEntitySet="Rooms">
                 <ScalarProperty Name="room_id" ColumnName="room_id" />
                 <ScalarProperty Name="room_name" ColumnName="room_name" />
@@ -628,7 +712,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sensor_Data">
-            <EntityTypeMapping TypeName="smart_homeModel.Sensor_Data">
+            <EntityTypeMapping TypeName="SmartHomeModel.Sensor_Data">
               <MappingFragment StoreEntitySet="Sensor_Data">
                 <ScalarProperty Name="data_id" ColumnName="data_id" />
                 <ScalarProperty Name="sensor_type_id" ColumnName="sensor_type_id" />
@@ -638,7 +722,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="smart_homeModel.sysdiagrams">
+            <EntityTypeMapping TypeName="SmartHomeModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -649,7 +733,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TypeAction">
-            <EntityTypeMapping TypeName="smart_homeModel.TypeAction">
+            <EntityTypeMapping TypeName="SmartHomeModel.TypeAction">
               <MappingFragment StoreEntitySet="TypeAction">
                 <ScalarProperty Name="type_action_id" ColumnName="type_action_id" />
                 <ScalarProperty Name="type_name" ColumnName="type_name" />
@@ -657,7 +741,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User_Preferences">
-            <EntityTypeMapping TypeName="smart_homeModel.User_Preferences">
+            <EntityTypeMapping TypeName="SmartHomeModel.User_Preferences">
               <MappingFragment StoreEntitySet="User_Preferences">
                 <ScalarProperty Name="preference_id" ColumnName="preference_id" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
@@ -668,7 +752,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="smart_homeModel.Users">
+            <EntityTypeMapping TypeName="SmartHomeModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
                 <ScalarProperty Name="username" ColumnName="username" />
@@ -678,22 +762,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="Device_Data" TypeName="smart_homeModel.Device_Data" StoreEntitySet="Device_Data">
-            <EndProperty Name="Sensor_Data">
-              <ScalarProperty Name="data_id" ColumnName="data_id" />
-            </EndProperty>
-            <EndProperty Name="Devices">
-              <ScalarProperty Name="device_id" ColumnName="device_id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="UsersToDevices" TypeName="smart_homeModel.UsersToDevices" StoreEntitySet="UsersToDevices">
-            <EndProperty Name="Devices">
-              <ScalarProperty Name="device_id" ColumnName="device_id" />
-            </EndProperty>
-            <EndProperty Name="Users">
-              <ScalarProperty Name="user_id" ColumnName="user_id" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="UsersToDevices">
+            <EntityTypeMapping TypeName="SmartHomeModel.UsersToDevices">
+              <MappingFragment StoreEntitySet="UsersToDevices">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="device_id" ColumnName="device_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SmartHome
 {
@@ -14,6 +15,96 @@ namespace SmartHome
     /// </summary>
     class Utils
     {
+        public enum ComboBoxName
+        {
+            Users,
+            Devices,
+            TypeActions,
+            SensorData,
+            Rooms,
+            Events
+        }
+
+        public static void LoadDataToComboBox(ComboBox ComboBox, ComboBoxName comboBoxName)
+        {
+            try
+            {
+                if (comboBoxName == ComboBoxName.TypeActions)
+                {
+                    var types = Core.DB.TypeAction.ToList();
+
+                    ComboBox.ItemsSource = types;
+
+                    if (types.Any())
+                    {
+                        ComboBox.SelectedIndex = 0;
+                    }
+                }
+                else if(comboBoxName == ComboBoxName.Devices)
+                {
+                    var dev = Core.DB.Devices.ToList();
+
+                    ComboBox.ItemsSource = dev;
+
+                    if (dev.Any())
+                    {
+                        ComboBox.SelectedIndex = 0;
+                    }
+                }
+                else if (comboBoxName == ComboBoxName.Users)
+                {
+                    var us = Core.DB.Users.ToList();
+
+                    ComboBox.ItemsSource = us;
+
+                    if (us.Any())
+                    {
+                        ComboBox.SelectedIndex = 0;
+                    }
+                }
+                else if (comboBoxName == ComboBoxName.SensorData)
+                {
+                    var data = Core.DB.Sensor_Data.ToList();
+
+                    ComboBox.ItemsSource = data;
+
+                    if (data.Any())
+                    {
+                        ComboBox.SelectedIndex = 0;
+                    }
+                }
+                else if (comboBoxName == ComboBoxName.Rooms)
+                {
+                    var rooms = Core.DB.Rooms.ToList();
+
+                    ComboBox.ItemsSource = rooms;
+
+                    if (rooms.Any())
+                    {
+                        ComboBox.SelectedIndex = 0;
+                    }
+                }
+                else if (comboBoxName == ComboBoxName.Events)
+                {
+                    var events = Core.DB.Events.ToList();
+
+                    ComboBox.ItemsSource = events;
+
+                    if (events.Any())
+                    {
+                        ComboBox.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    throw new Exception($"Ошибка в ComboBoxName: {comboBoxName} нет в данном контексте");
+                }
+            }
+            catch (Exception ex)
+            {
+                SmartHome.Utils.PrintError(ex, "Ошибка при загрузке данных: ");
+            }
+        }
         public static string GetHash(string password)
         {
             using (var hash = SHA1.Create())

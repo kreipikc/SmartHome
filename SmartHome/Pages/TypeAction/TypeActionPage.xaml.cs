@@ -43,24 +43,24 @@ namespace SmartHome.Pages.TypeAction
 
         private void FilterAndSortTypeAction()
         {
-            var filteredDevices = allType.AsQueryable();
+            var filteredData = allType.AsQueryable();
 
             if (!string.IsNullOrEmpty(SearchTypeActionName.Text))
             {
-                filteredDevices = filteredDevices.Where(d => d.type_name.IndexOf(SearchTypeActionName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.type_name.IndexOf(SearchTypeActionName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             switch (SortTypeActionCategory.SelectedIndex)
             {
                 case 0: // По Id
-                    filteredDevices = filteredDevices.OrderBy(d => d.type_action_id);
+                    filteredData = filteredData.OrderBy(d => d.type_action_id);
                     break;
                 case 1: // По названию
-                    filteredDevices = filteredDevices.OrderBy(d => d.type_name);
+                    filteredData = filteredData.OrderBy(d => d.type_name);
                     break;
             }
 
-            DataGridTypeAction.ItemsSource = filteredDevices.ToList();
+            DataGridTypeAction.ItemsSource = filteredData.ToList();
         }
 
         private void AddTypeAction_Click(object sender, RoutedEventArgs e)
