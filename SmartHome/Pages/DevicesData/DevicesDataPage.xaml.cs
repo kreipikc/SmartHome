@@ -158,5 +158,10 @@ namespace SmartHome.Pages.DevicesData
             SortDevicesDataCategory.SelectedIndex = 0;
             SortDeviceData();
         }
+
+        private void Diagram_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DevicesDataStatPage());
+        }
     }
 }

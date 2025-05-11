@@ -37,6 +37,7 @@
             <Button Content="Добавить" Width="100" Margin="5" Click="AddDevicesData_Click" />
             <Button Content="Удалить" Width="100" Margin="5" Click="DeleteDevicesData_Click" Style="{StaticResource RedButtonStyle}" />
             <Button Content="Обновить" Width="100" Margin="5" Click="RefreshDevicesData_Click" />
+            <Button Content="Диаграмма и отчеты" Width="125" Margin="5" Click="Diagram_Click" />
         </StackPanel>
 
         <DataGrid Grid.Row="2" Name="DataGridDevicesData" AutoGenerateColumns="False" IsReadOnly="True">
