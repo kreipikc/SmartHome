@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmartHome
 {
+    /// <summary>
+    /// Класс для работы с базой данных (Singleton)
+    /// </summary>
     class Core
     {
         private static Database.SmartHomeEntities _smartHomeEntities;

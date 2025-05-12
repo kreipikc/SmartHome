@@ -49,9 +49,9 @@ namespace SmartHome.Pages.Users
         {
             var filteredData = allUsers.AsQueryable();
 
-            if (!string.IsNullOrEmpty(SearchUsersName.Text))
+            if (!string.IsNullOrEmpty(SearchUsersEmail.Text))
             {
-                filteredData = filteredData.Where(d => d.username.IndexOf(SearchUsersName.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredData = filteredData.Where(d => d.email.IndexOf(SearchUsersEmail.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
 
             switch (SortUsersCategory.SelectedIndex)
@@ -141,7 +141,7 @@ namespace SmartHome.Pages.Users
             }
         }
 
-        private void SearchUsersName_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchUsersEmail_TextChanged(object sender, TextChangedEventArgs e)
         {
             FilterAndSortUsers();
         }
@@ -153,7 +153,7 @@ namespace SmartHome.Pages.Users
 
         private void CleanFilter_OnClick(object sender, RoutedEventArgs e)
         {
-            SearchUsersName.Text = string.Empty;
+            SearchUsersEmail.Text = string.Empty;
             SortUsersCategory.SelectedIndex = 0;
             FilterAndSortUsers();
         }

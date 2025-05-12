@@ -16,9 +16,9 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
-            <TextBlock Text="Введите название" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
-            <TextBox x:Name="SearchUsersName" HorizontalAlignment="Right"
-                     TextChanged="SearchUsersName_TextChanged" Width="135" Margin="5"/>
+            <TextBlock Text="Введите почту" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
+            <TextBox x:Name="SearchUsersEmail" HorizontalAlignment="Right"
+                     TextChanged="SearchUsersEmail_TextChanged" Width="135" Margin="5"/>
 
             <TextBlock Text="Сортировать" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
             <ComboBox x:Name="SortUsersCategory" HorizontalAlignment="Right"
@@ -38,7 +38,7 @@
             <Button Content="Редактировать" Width="100" Margin="5" Click="EditUsers_Click" />
             <Button Content="Удалить" Width="100" Margin="5" Click="DeleteUsers_Click" Style="{StaticResource RedButtonStyle}" />
             <Button Content="Обновить" Width="100" Margin="5" Click="RefreshUsers_Click" />
-            <Button Content="Preferences" Width="100" Margin="5" Click="Preferences_Click" />
+            <Button Content="Настройки" Width="100" Margin="5" Click="Preferences_Click" />
         </StackPanel>
 
         <DataGrid Grid.Row="2" Name="DataGridUsers" AutoGenerateColumns="False" IsReadOnly="True">

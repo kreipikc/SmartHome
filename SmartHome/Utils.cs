@@ -29,75 +29,70 @@ namespace SmartHome
         {
             try
             {
-                if (comboBoxName == ComboBoxName.TypeActions)
+                switch (comboBoxName)
                 {
-                    var types = Core.DB.TypeAction.ToList();
+                    case ComboBoxName.TypeActions:
+                        var types = Core.DB.TypeAction.ToList();
 
-                    ComboBox.ItemsSource = types;
+                        ComboBox.ItemsSource = types;
 
-                    if (types.Any())
-                    {
-                        ComboBox.SelectedIndex = 0;
-                    }
-                }
-                else if(comboBoxName == ComboBoxName.Devices)
-                {
-                    var dev = Core.DB.Devices.ToList();
+                        if (types.Any())
+                        {
+                            ComboBox.SelectedIndex = 0;
+                        }
+                        break;
+                    case ComboBoxName.Devices:
+                        var dev = Core.DB.Devices.ToList();
 
-                    ComboBox.ItemsSource = dev;
+                        ComboBox.ItemsSource = dev;
 
-                    if (dev.Any())
-                    {
-                        ComboBox.SelectedIndex = 0;
-                    }
-                }
-                else if (comboBoxName == ComboBoxName.Users)
-                {
-                    var us = Core.DB.Users.ToList();
+                        if (dev.Any())
+                        {
+                            ComboBox.SelectedIndex = 0;
+                        }
+                        break;
+                    case ComboBoxName.Users:
+                        var us = Core.DB.Users.ToList();
 
-                    ComboBox.ItemsSource = us;
+                        ComboBox.ItemsSource = us;
 
-                    if (us.Any())
-                    {
-                        ComboBox.SelectedIndex = 0;
-                    }
-                }
-                else if (comboBoxName == ComboBoxName.SensorData)
-                {
-                    var data = Core.DB.Sensor_Data.ToList();
+                        if (us.Any())
+                        {
+                            ComboBox.SelectedIndex = 0;
+                        }
+                        break;
+                    case ComboBoxName.SensorData:
+                        var data = Core.DB.Sensor_Data.ToList();
 
-                    ComboBox.ItemsSource = data;
+                        ComboBox.ItemsSource = data;
 
-                    if (data.Any())
-                    {
-                        ComboBox.SelectedIndex = 0;
-                    }
-                }
-                else if (comboBoxName == ComboBoxName.Rooms)
-                {
-                    var rooms = Core.DB.Rooms.ToList();
+                        if (data.Any())
+                        {
+                            ComboBox.SelectedIndex = 0;
+                        }
+                        break;
+                    case ComboBoxName.Rooms:
+                        var rooms = Core.DB.Rooms.ToList();
 
-                    ComboBox.ItemsSource = rooms;
+                        ComboBox.ItemsSource = rooms;
 
-                    if (rooms.Any())
-                    {
-                        ComboBox.SelectedIndex = 0;
-                    }
-                }
-                else if (comboBoxName == ComboBoxName.Events)
-                {
-                    var events = Core.DB.Events.ToList();
+                        if (rooms.Any())
+                        {
+                            ComboBox.SelectedIndex = 0;
+                        }
+                        break;
+                    case ComboBoxName.Events:
+                        var events = Core.DB.Events.ToList();
 
-                    ComboBox.ItemsSource = events;
+                        ComboBox.ItemsSource = events;
 
-                    if (events.Any())
-                    {
-                        ComboBox.SelectedIndex = 0;
-                    }
-                }
-                else
-                {
-                    throw new Exception($"Ошибка в ComboBoxName: {comboBoxName} нет в данном контексте");
+                        if (events.Any())
+                        {
+                            ComboBox.SelectedIndex = 0;
+                        }
+                        break;
+                    default:
+                        throw new Exception($"Ошибка в ComboBoxName: {comboBoxName} нет в данном контексте");
                 }
             }
             catch (Exception ex)

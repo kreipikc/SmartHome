@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmartHome.Pages.UsersToDevices
 {
+    /// <summary>
+    /// Класс для отображения конкретных данных таблицы UsersToDevices
+    /// </summary>
     public class UserToDevicesView
     {
         public int Id { get; set; }

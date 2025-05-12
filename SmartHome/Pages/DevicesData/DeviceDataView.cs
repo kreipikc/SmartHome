@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace SmartHome.Pages.DevicesData
 {
+    /// <summary>
+    /// Класс для отображения конкретных данных таблицы DeviceData
+    /// </summary>
     public class DeviceDataView
     {
         public int Id { get; set; }
