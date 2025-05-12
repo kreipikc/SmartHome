@@ -21,11 +21,11 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Введите название" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
             <TextBox x:Name="SearchUsersPreferencesName" HorizontalAlignment="Right"
-             TextChanged="SearchUsersPreferencesName_TextChanged" Width="135" Margin="5"/>
+                TextChanged="SearchUsersPreferencesName_TextChanged" Width="135" Margin="5"/>
 
             <TextBlock Text="Сортировать" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
             <ComboBox x:Name="SortUsersPreferencesCategory" HorizontalAlignment="Right"
-              DisplayMemberPath="NameOfCategory" SelectedIndex="0" SelectionChanged="SortUsersPreferencesCategory_SelectionChanged" Width="265" Margin="5">
+                DisplayMemberPath="NameOfCategory" SelectedIndex="0" SelectionChanged="SortUsersPreferencesCategory_SelectionChanged" Width="265" Margin="5">
                 <ComboBox.ItemsSource>
                     <CompositeCollection>
                         <CollectionContainer Collection="{Binding UsersPreferencesCategories}"/>

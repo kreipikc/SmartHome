@@ -18,11 +18,11 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
             <TextBlock Text="Введите почту" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
             <TextBox x:Name="SearchUsersEmail" HorizontalAlignment="Right"
-                     TextChanged="SearchUsersEmail_TextChanged" Width="135" Margin="5"/>
+                TextChanged="SearchUsersEmail_TextChanged" Width="135" Margin="5"/>
 
             <TextBlock Text="Сортировать" HorizontalAlignment="Left" FontSize="14" Margin="5"/>
             <ComboBox x:Name="SortUsersCategory" HorizontalAlignment="Right"
-                      DisplayMemberPath="NameOfCategory" SelectedIndex="0" SelectionChanged="SortUsersCategory_SelectionChanged" Width="265" Margin="5">
+                DisplayMemberPath="NameOfCategory" SelectedIndex="0" SelectionChanged="SortUsersCategory_SelectionChanged" Width="265" Margin="5">
                 <ComboBox.ItemsSource>
                     <CompositeCollection>
                         <CollectionContainer Collection="{Binding UsersCategories}"/>
