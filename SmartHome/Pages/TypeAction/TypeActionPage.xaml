@@ -13,6 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
@@ -46,5 +47,7 @@
                 <DataGridTextColumn Header="Название" Binding="{Binding type_name}"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Grid.Row="3" x:Name="btnLogout" Content="Выйти" HorizontalAlignment="Left" Width="100" Margin="5" Click="BtnLogout_Click" Style="{StaticResource RedButtonStyle}"/>
     </Grid>
 </Page>

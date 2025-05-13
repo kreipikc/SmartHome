@@ -157,5 +157,22 @@ namespace SmartHome.Pages.Users
             SortUsersCategory.SelectedIndex = 0;
             FilterAndSortUsers();
         }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+                "Вы уверены что хотите выйти из аккаунта?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question
+            );
+
+            if (result == MessageBoxResult.Yes)
+            {
+                LoginPage.UserNow = null;
+                MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+                mainWindow.NavigateToPage(new LoginPage());
+            }
+        }
     }
 }

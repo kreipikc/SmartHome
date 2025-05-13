@@ -14,6 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Name="DevicesCurrent" Text="Название девайса" FontSize="16" Margin="5"/>
@@ -53,5 +54,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <Button Grid.Row="4" x:Name="btnLogout" Content="Выйти" HorizontalAlignment="Left" Width="100" Margin="5" Click="BtnLogout_Click" Style="{StaticResource RedButtonStyle}"/>
     </Grid>
 </Page>

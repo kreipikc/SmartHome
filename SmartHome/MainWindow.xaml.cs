@@ -29,6 +29,11 @@ namespace SmartHome
             MainFrame.NavigationService.Navigate(new Pages.LoginPage());
         }
 
+        public void NavigateToPage(Page page)
+        {
+            MainFrame.Navigate(page);
+        }
+
         protected override void OnClosing(CancelEventArgs e)
         {
             e.Cancel = true;
